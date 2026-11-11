@@ -1,7 +1,9 @@
 export default function ScoreSummary({ pack, answers, score, onClose, onJump }) {
-  const s = score || { total: 0, questionCount: pack.questions.length, bySection: {}, wrong: [] }
+  const s = score || { total: 0, questionCount: pack.questions.length, bySection: {}, wrong: [], skipped: [] }
   const total = s.questionCount || pack.questions.length
   const pct = Math.round((s.total / total) * 100)
+  const wrong = s.wrong || []
+  const skipped = s.skipped || []
 
   return (
     <div className="sheet-overlay" role="dialog" aria-label="成绩" onClick={onClose}>
@@ -34,11 +36,11 @@ export default function ScoreSummary({ pack, answers, score, onClose, onJump }) 
           ))}
         </div>
 
-        {s.wrong && s.wrong.length > 0 && (
+        {wrong.length > 0 && (
           <div className="wrong-list">
-            <h3 className="wrong-title">错题（{s.wrong.length}）· 点击跳转</h3>
+            <h3 className="wrong-title">错题（{wrong.length}）· 点击跳转</h3>
             <div className="wrong-chips">
-              {s.wrong.map((n) => (
+              {wrong.map((n) => (
                 <button key={n} className="wrong-chip" onClick={() => onJump(n)}>
                   {n}
                 </button>
@@ -46,7 +48,19 @@ export default function ScoreSummary({ pack, answers, score, onClose, onJump }) 
             </div>
           </div>
         )}
-        {s.wrong && s.wrong.length === 0 && (
+        {skipped.length > 0 && (
+          <div className="wrong-list">
+            <h3 className="wrong-title">未作答（{skipped.length}）· 点击跳转</h3>
+            <div className="wrong-chips">
+              {skipped.map((n) => (
+                <button key={n} className="wrong-chip wrong-chip-skipped" onClick={() => onJump(n)}>
+                  {n}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        {wrong.length === 0 && skipped.length === 0 && (
           <p className="score-perfect">🎉 全部答对，太棒了！</p>
         )}
 

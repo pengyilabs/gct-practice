@@ -96,7 +96,18 @@ export default function HomeScreen({ manifest, error }) {
           )
         })}
         {manifest && tests.length === 0 && (
-          <p className="hint">没有匹配的练习卷，换个关键词试试。</p>
+          <div className="empty-state">
+            <p className="hint">没有匹配的练习卷，换个关键词试试。</p>
+            <button
+              className="btn-ghost"
+              onClick={() => {
+                setQuery('')
+                setLevel('全部')
+              }}
+            >
+              清除筛选条件
+            </button>
+          </div>
         )}
       </div>
 
