@@ -133,7 +133,7 @@ function ChoiceRow({ q, selected, onSelect, variant }) {
                     <span>{c.text}</span>
                   </span>
                 ) : (
-                  <span className="choice-text">{c.text}</span>
+                  c.text && <span className="choice-text">{c.text}</span>
                 )}
               </>
             )}

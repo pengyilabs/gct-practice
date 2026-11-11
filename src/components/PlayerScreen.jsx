@@ -21,6 +21,15 @@ export default function PlayerScreen() {
 
   const audioRef = useRef(null)
 
+  // lock page scroll behind open sheets
+  useEffect(() => {
+    const open = gridOpen || scoreOpen
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [gridOpen, scoreOpen])
+
   // ---- load pack + saved progress -------------------------------------
   useEffect(() => {
     let alive = true
@@ -137,6 +146,7 @@ export default function PlayerScreen() {
     const bySection = {}
     let total = 0
     const wrong = []
+    const skipped = []
     for (const q of pack.questions) {
       const sec = pack.sections.find((s) => s.id === q.section)
       const name = sec ? sec.part : '其他'
@@ -145,11 +155,13 @@ export default function PlayerScreen() {
       if (answers[q.n] === q.answer) {
         total += 1
         bySection[name].correct += 1
+      } else if (answers[q.n] == null) {
+        skipped.push(q.n)
       } else {
         wrong.push(q.n)
       }
     }
-    const s = { total, questionCount: pack.questions.length, bySection, wrong, at: Date.now() }
+    const s = { total, questionCount: pack.questions.length, bySection, wrong, skipped, at: Date.now() }
     setScore(s)
     persist(answers, s)
     setScoreOpen(true)
