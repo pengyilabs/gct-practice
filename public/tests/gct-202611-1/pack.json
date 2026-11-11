@@ -1,0 +1,502 @@
+{
+  "id": "gct-202611-1",
+  "title": "GCT-202611 · 练习一",
+  "level": "GCT",
+  "language": "zh",
+  "audio": "audio.mp3",
+  "audioDuration": 824,
+  "sections": [
+    { "id": "l1", "part": "听力", "title": "第一部分 · 看图选择", "from": 1, "to": 5 },
+    { "id": "l2", "part": "听力", "title": "第二部分 · 判断对错", "from": 6, "to": 10 },
+    { "id": "l3", "part": "听力", "title": "第三部分 · 短对话", "from": 11, "to": 15 },
+    { "id": "l4", "part": "听力", "title": "第四部分 · 长对话", "from": 16, "to": 20 },
+    { "id": "r1", "part": "阅读", "title": "第一部分 · 选择合适的问答", "from": 21, "to": 30 },
+    { "id": "r2", "part": "阅读", "title": "第二部分 · 选词填空", "from": 31, "to": 40 },
+    { "id": "r3", "part": "阅读", "title": "第三部分 · 短文理解", "from": 41, "to": 50 },
+    { "id": "r4", "part": "阅读", "title": "第四部分 · 连词成句", "from": 51, "to": 55 },
+    { "id": "h1", "part": "汉字", "title": "第一部分 · 看拼音选汉字", "from": 56, "to": 60 },
+    { "id": "h2", "part": "汉字", "title": "第二部分 · 选字填空", "from": 61, "to": 65 }
+  ],
+  "questions": [
+    {
+      "n": 1, "section": "l1", "type": "picture",
+      "prompt": "听对话，选择与对话内容一致的图片",
+      "image": "img/p1_q1.png",
+      "choices": [ { "key": "A", "text": "" }, { "key": "B", "text": "" }, { "key": "C", "text": "" } ],
+      "audioStart": 0, "audioEnd": 24.5,
+      "transcript": [ "别看电视了。长时间看电视，对眼睛不好。", "好的，我去睡觉了。" ],
+      "answer": "A"
+    },
+    {
+      "n": 2, "section": "l1", "type": "picture",
+      "prompt": "听对话，选择与对话内容一致的图片",
+      "image": "img/p1_q2.png",
+      "choices": [ { "key": "A", "text": "" }, { "key": "B", "text": "" }, { "key": "C", "text": "" } ],
+      "audioStart": 24.5, "audioEnd": 58.26,
+      "transcript": [ "这是哪儿啊？你开错了吧？我们怎么回家呀？", "别着急，车上有电子地图。" ],
+      "answer": "C"
+    },
+    {
+      "n": 3, "section": "l1", "type": "picture",
+      "prompt": "听对话，选择与对话内容一致的图片",
+      "image": "img/p2_q3.png",
+      "choices": [ { "key": "A", "text": "" }, { "key": "B", "text": "" }, { "key": "C", "text": "" } ],
+      "audioStart": 65.04, "audioEnd": 82.83,
+      "transcript": [ "大卫很喜欢跑步。", "是啊，他跑得非常快。" ],
+      "answer": "B"
+    },
+    {
+      "n": 4, "section": "l1", "type": "picture",
+      "prompt": "听对话，选择与对话内容一致的图片",
+      "image": "img/p2_q4.png",
+      "choices": [ { "key": "A", "text": "" }, { "key": "B", "text": "" }, { "key": "C", "text": "" } ],
+      "audioStart": 82.83, "audioEnd": 114.64,
+      "transcript": [ "这是你妹妹让我买的火车票。", "你能帮我给她吗？", "没问题，我一会儿就给她。" ],
+      "answer": "C"
+    },
+    {
+      "n": 5, "section": "l1", "type": "picture",
+      "prompt": "听对话，选择与对话内容一致的图片",
+      "image": "img/p2_q5.png",
+      "choices": [ { "key": "A", "text": "" }, { "key": "B", "text": "" }, { "key": "C", "text": "" } ],
+      "audioStart": 114.64, "audioEnd": 144.27,
+      "transcript": [ "你怎么了？怎么不跑了？", "今天不知道怎么了，脚一直疼。" ],
+      "answer": "B"
+    },
+    {
+      "n": 6, "section": "l2", "type": "truefalse",
+      "prompt": "家里还有很多鸡蛋。",
+      "choices": [ { "key": "√", "text": "对" }, { "key": "×", "text": "错" } ],
+      "audioStart": 144.27, "audioEnd": 167.08,
+      "transcript": [ "家里一个鸡蛋也没有。", "明天早上吃什么呀？家里还有很多鸡蛋。" ],
+      "answer": "×"
+    },
+    {
+      "n": 7, "section": "l2", "type": "truefalse",
+      "prompt": "他不喜欢这个电影。",
+      "choices": [ { "key": "√", "text": "对" }, { "key": "×", "text": "错" } ],
+      "audioStart": 167.08, "audioEnd": 198.14,
+      "transcript": [ "这个电影一点意思也没有。", "我们看书吧。", "他不喜欢这个电影。" ],
+      "answer": "√"
+    },
+    {
+      "n": 8, "section": "l2", "type": "truefalse",
+      "prompt": "他的电脑出了点儿问题。",
+      "choices": [ { "key": "√", "text": "对" }, { "key": "×", "text": "错" } ],
+      "audioStart": 198.14, "audioEnd": 259.76,
+      "transcript": [ "小周，你帮我看一下笔记本电脑吧。", "昨天我还能看电子邮件，今天突然就打不开了。", "不知道是怎么回事。", "他的电脑出了点问题。" ],
+      "answer": "√"
+    },
+    {
+      "n": 9, "section": "l2", "type": "truefalse",
+      "prompt": "小刚在等人。",
+      "choices": [ { "key": "√", "text": "对" }, { "key": "×", "text": "错" } ],
+      "audioStart": 259.76, "audioEnd": 278.64,
+      "transcript": [ "小刚在门口站了一个小时，小方也没出来。", "小刚在等人。" ],
+      "answer": "√"
+    },
+    {
+      "n": 10, "section": "l2", "type": "truefalse",
+      "prompt": "他一直一边吃早饭一边看报纸。",
+      "choices": [ { "key": "√", "text": "对" }, { "key": "×", "text": "错" } ],
+      "audioStart": 278.64, "audioEnd": 329.98,
+      "transcript": [ "过去，我喜欢每天早上起床后，一边吃早饭，一边看报纸。", "现在我没有这个习惯了，因为太忙了，没时间了。", "他一直一边吃早饭，一边看报纸。" ],
+      "answer": "×"
+    },
+    {
+      "n": 11, "section": "l3", "type": "mcq",
+      "prompt": "他丈夫最爱吃什么？",
+      "choices": [ { "key": "A", "text": "鱼" }, { "key": "B", "text": "都爱吃" }, { "key": "C", "text": "晚饭" } ],
+      "audioStart": 329.98, "audioEnd": 376.75,
+      "transcript": [ "我去准备晚饭，你们爱吃什么？", "我丈夫和我都爱吃鱼。", "问：他丈夫最爱吃什么？" ],
+      "answer": "A"
+    },
+    {
+      "n": 12, "section": "l3", "type": "mcq",
+      "prompt": "他昨天的考试怎么样？",
+      "choices": [ { "key": "A", "text": "没听懂" }, { "key": "B", "text": "不会做" }, { "key": "C", "text": "没做完" } ],
+      "audioStart": 376.75, "audioEnd": 417.41,
+      "transcript": [ "昨天的考试怎么样？都做完了没有？", "题太多，我没做完。", "问：他昨天的考试怎么样？" ],
+      "answer": "C"
+    },
+    {
+      "n": 13, "section": "l3", "type": "mcq",
+      "prompt": "今天天气怎么样？",
+      "choices": [ { "key": "A", "text": "太热了" }, { "key": "B", "text": "很冷" }, { "key": "C", "text": "不冷不热" } ],
+      "audioStart": 417.41, "audioEnd": 465.92,
+      "transcript": [ "快要下雪了，我觉得比昨天更冷了。", "没关系，我穿的衣服比昨天多。", "问：今天天气怎么样？" ],
+      "answer": "B"
+    },
+    {
+      "n": 14, "section": "l3", "type": "mcq",
+      "prompt": "女的让男的做什么？",
+      "choices": [ { "key": "A", "text": "吃饭" }, { "key": "B", "text": "做饭" }, { "key": "C", "text": "打电话" } ],
+      "audioStart": 465.92, "audioEnd": 500.21,
+      "transcript": [ "饭做好了，快过来吃。", "好，我打了电话就过去。", "问：女的让男的做什么？" ],
+      "answer": "A"
+    },
+    {
+      "n": 15, "section": "l3", "type": "mcq",
+      "prompt": "他们可能在哪儿？",
+      "choices": [ { "key": "A", "text": "飞机上" }, { "key": "B", "text": "电影院" }, { "key": "C", "text": "火车上" } ],
+      "audioStart": 500.21, "audioEnd": 549.42,
+      "transcript": [ "怎么还没到？我都看了三四个电影了。", "我们是从中国到美国，还要再飞五六个小时。", "你睡一会儿，或者再看几个电影。", "问：他们可能在哪儿？" ],
+      "answer": "A"
+    },
+    {
+      "n": 16, "section": "l4", "type": "mcq",
+      "prompt": "女的说到了几个房间？",
+      "choices": [ { "key": "A", "text": "一个" }, { "key": "B", "text": "两个" }, { "key": "C", "text": "三个" } ],
+      "audioStart": 560.66, "audioEnd": 611.56,
+      "transcript": [ "这个房间是你的吗？", "不是，右边那个房间是我的，这是我妹妹的。", "你爸爸妈妈住在哪儿？", "他们的房间在旁边。", "问：女的说到了几个房间？" ],
+      "answer": "C"
+    },
+    {
+      "n": 17, "section": "l4", "type": "mcq",
+      "prompt": "他们在做什么？",
+      "choices": [ { "key": "A", "text": "看房子" }, { "key": "B", "text": "买桌椅" }, { "key": "C", "text": "找饭馆" } ],
+      "audioStart": 611.56, "audioEnd": 668.87,
+      "transcript": [ "这椅子有点矮，坐着不舒服。", "没关系，我们去那边看看，那儿也有。", "这层有桌子吗？", "今天把桌子椅子都一起换了吧。", "好，我们先看椅子，再看桌子，然后去吃饭。", "问：他们在做什么？" ],
+      "answer": "B"
+    },
+    {
+      "n": 18, "section": "l4", "type": "mcq",
+      "prompt": "这两个人可能是什么关系？",
+      "choices": [ { "key": "A", "text": "男女朋友" }, { "key": "B", "text": "医生和病人" }, { "key": "C", "text": "丈夫和妻子" } ],
+      "audioStart": 668.87, "audioEnd": 716.47,
+      "transcript": [ "今天好些了吗？", "这几天一直吃药，现在好些了，腿也不疼了。", "那不用再吃药了。", "太好了，谢谢您。", "问：这两个人可能是什么关系？" ],
+      "answer": "B"
+    },
+    {
+      "n": 19, "section": "l4", "type": "mcq",
+      "prompt": "关于女的可以知道什么？",
+      "choices": [ { "key": "A", "text": "考得不好" }, { "key": "B", "text": "没带手表" }, { "key": "C", "text": "还没复习" } ],
+      "audioStart": 716.47, "audioEnd": 772.02,
+      "transcript": [ "你怎么了？一天都不高兴。", "明天就要考试了，我一点都没复习呢。", "别着急，你学的好，考试没问题。", "希望这次能考好。", "问：关于女的可以知道什么？" ],
+      "answer": "C"
+    },
+    {
+      "n": 20, "section": "l4", "type": "mcq",
+      "prompt": "他们今天吃什么？",
+      "choices": [ { "key": "A", "text": "药" }, { "key": "B", "text": "面条" }, { "key": "C", "text": "蛋糕" } ],
+      "audioStart": 772.02, "audioEnd": 816.81,
+      "transcript": [ "你吃药了吗？", "还没有，我吃完饭再吃。", "今天我们吃面条？", "是，吃鸡蛋面，马上就好。", "问：他们今天吃什么？" ],
+      "answer": "B"
+    },
+    {
+      "n": 21, "section": "r1", "type": "mcq",
+      "prompt": "天越来越黑，快要下雨了。",
+      "choices": [ { "key": "A", "text": "我们快回家去吧。" }, { "key": "B", "text": "要来客人了，我去买点儿水果吧。" }, { "key": "C", "text": "今天一个人都没有。" } ],
+      "answer": "A",
+      "explanation": "快要下雨了，最自然的回应是“我们快回家去吧”。"
+    },
+    {
+      "n": 22, "section": "r1", "type": "mcq",
+      "prompt": "你的汉字非常漂亮。",
+      "choices": [ { "key": "A", "text": "谢谢！我是大学的时候开始学的。" }, { "key": "B", "text": "我学写了很多汉字。" }, { "key": "C", "text": "不是，我以前不会写汉字。" } ],
+      "answer": "A",
+      "explanation": "别人称赞时先道谢，再补充“大学时开始学的”。"
+    },
+    {
+      "n": 23, "section": "r1", "type": "mcq",
+      "prompt": "我们明天早上去跑步吧。",
+      "choices": [ { "key": "A", "text": "我想买一些冬天穿的衣服。" }, { "key": "B", "text": "好啊，医生说多运动对身体好。" }, { "key": "C", "text": "别看电视了，明天还要考试呢。" } ],
+      "answer": "B",
+      "explanation": "对跑步的提议表示同意：“好啊，多运动对身体好”。"
+    },
+    {
+      "n": 24, "section": "r1", "type": "mcq",
+      "prompt": "你为什么不坐公共汽车去公司？",
+      "choices": [ { "key": "A", "text": "坐公共汽车太慢了。" }, { "key": "B", "text": "我在去机场的路上。" }, { "key": "C", "text": "我家前面有一个小饭馆。" } ],
+      "answer": "A",
+      "explanation": "问“为什么不坐公共汽车”，答原因“太慢了”。"
+    },
+    {
+      "n": 25, "section": "r1", "type": "mcq",
+      "prompt": "今天我非常高兴，你们多吃点儿蛋糕。",
+      "choices": [ { "key": "A", "text": "你饿了吗？我请你吃饭吧。" }, { "key": "B", "text": "可能吃的东西有问题，不太舒服。" }, { "key": "C", "text": "我们也很高兴，祝你生日快乐！" } ],
+      "answer": "C",
+      "explanation": "请吃蛋糕的场景是生日，回应“祝你生日快乐”。"
+    },
+    {
+      "n": 26, "section": "r1", "type": "mcq",
+      "prompt": "下课以后，你去哪儿看书？",
+      "choices": [ { "key": "A", "text": "我们六点才下课。" }, { "key": "B", "text": "哪儿安静我就去哪儿。" }, { "key": "C", "text": "明天要考试，考完再去吧。" } ],
+      "answer": "B",
+      "explanation": "问去哪儿看书，答“哪儿安静就去哪儿”。"
+    },
+    {
+      "n": 27, "section": "r1", "type": "mcq",
+      "prompt": "你在这家公司工作多久了？",
+      "choices": [ { "key": "A", "text": "刚十几分钟，还有很远呢。" }, { "key": "B", "text": "不太累，每个月的钱也不少。" }, { "key": "C", "text": "我是新来的，刚工作三个月。" } ],
+      "answer": "C",
+      "explanation": "问工作多久，答时长“刚工作三个月”。"
+    },
+    {
+      "n": 28, "section": "r1", "type": "mcq",
+      "prompt": "王老师为什么这么喜欢你？",
+      "choices": [ { "key": "A", "text": "左边的是王老师，右边的是张老师。" }, { "key": "B", "text": "我上课的时候常回答问题。" }, { "key": "C", "text": "对不起，王老师现在不在。" } ],
+      "answer": "B",
+      "explanation": "问原因，答“上课常回答问题”。"
+    },
+    {
+      "n": 29, "section": "r1", "type": "mcq",
+      "prompt": "你想吃点儿什么？",
+      "choices": [ { "key": "A", "text": "天天吃米饭，今天吃点儿面条吧。" }, { "key": "B", "text": "我想下午去商店买个杯子。" }, { "key": "C", "text": "这个菜 25 块钱，太贵了。" } ],
+      "answer": "A",
+      "explanation": "问想吃什么，答食物“今天吃点儿面条”。"
+    },
+    {
+      "n": 30, "section": "r1", "type": "mcq",
+      "prompt": "怎么样？你中午见到马经理了吗？",
+      "choices": [ { "key": "A", "text": "你几点来都可以，上午我不忙。" }, { "key": "B", "text": "没有，不过我给他打了个电话。" }, { "key": "C", "text": "我已经出发了，十分钟就到。" } ],
+      "answer": "B",
+      "explanation": "问是否见到，答“没有，不过打了电话”。"
+    },
+    {
+      "n": 31, "section": "r2", "type": "mcq",
+      "prompt": "你认识李先生吗？能给我（　　）一下吗？",
+      "choices": [ { "key": "A", "text": "知道" }, { "key": "B", "text": "见面" }, { "key": "C", "text": "介绍" } ],
+      "answer": "C",
+      "explanation": "固定搭配“给我介绍一下”。"
+    },
+    {
+      "n": 32, "section": "r2", "type": "mcq",
+      "prompt": "天（　　）了，要下雨了，我们快点儿回家吧。",
+      "choices": [ { "key": "A", "text": "阴" }, { "key": "B", "text": "明" }, { "key": "C", "text": "晴" } ],
+      "answer": "A",
+      "explanation": "要下雨说明天“阴”了。"
+    },
+    {
+      "n": 33, "section": "r2", "type": "mcq",
+      "prompt": "昨天我们去买了一些水果，今天（　　）买了一些。",
+      "choices": [ { "key": "A", "text": "再" }, { "key": "B", "text": "都" }, { "key": "C", "text": "又" } ],
+      "answer": "C",
+      "explanation": "已经发生再一次用“又”；“再”用于未发生。"
+    },
+    {
+      "n": 34, "section": "r2", "type": "mcq",
+      "prompt": "虽然工作很忙，（　　）我每个星期都要运动。",
+      "choices": [ { "key": "A", "text": "还是" }, { "key": "B", "text": "但是" }, { "key": "C", "text": "就是" } ],
+      "answer": "B",
+      "explanation": "“虽然……但是……”是固定搭配。"
+    },
+    {
+      "n": 35, "section": "r2", "type": "mcq",
+      "prompt": "李月：这是我新买的裤子，（　　）？　大卫：很漂亮。",
+      "choices": [ { "key": "A", "text": "怎么样" }, { "key": "B", "text": "怎么" }, { "key": "C", "text": "什么" } ],
+      "answer": "A",
+      "explanation": "征求意见用“怎么样”。"
+    },
+    {
+      "n": 36, "section": "r2", "type": "mcq",
+      "prompt": "女：请问，中国银行怎么走？　男：不远了，（　　）前走五百米就到。",
+      "choices": [ { "key": "A", "text": "离" }, { "key": "B", "text": "从" }, { "key": "C", "text": "往" } ],
+      "answer": "C",
+      "explanation": "指方向用“往前走”。"
+    },
+    {
+      "n": 37, "section": "r2", "type": "mcq",
+      "prompt": "（　　）不下雨，我就出去跑步。",
+      "choices": [ { "key": "A", "text": "只是" }, { "key": "B", "text": "只要" }, { "key": "C", "text": "只好" } ],
+      "answer": "B",
+      "explanation": "“只要……就……”表示条件。"
+    },
+    {
+      "n": 38, "section": "r2", "type": "mcq",
+      "prompt": "这么多好看的车，我们买哪（　　）呢？",
+      "choices": [ { "key": "A", "text": "件" }, { "key": "B", "text": "辆" }, { "key": "C", "text": "把" } ],
+      "answer": "B",
+      "explanation": "车的量词是“辆”。"
+    },
+    {
+      "n": 39, "section": "r2", "type": "mcq",
+      "prompt": "（　　）吃水果对身体好。",
+      "choices": [ { "key": "A", "text": "然后" }, { "key": "B", "text": "经常" }, { "key": "C", "text": "以后" } ],
+      "answer": "B",
+      "explanation": "“经常吃水果对身体好”语义通顺。"
+    },
+    {
+      "n": 40, "section": "r2", "type": "mcq",
+      "prompt": "这个（　　）我们已经做过了，不用再做了。",
+      "choices": [ { "key": "A", "text": "练习" }, { "key": "B", "text": "问题" }, { "key": "C", "text": "节目" } ],
+      "answer": "A",
+      "explanation": "“做练习”是固定搭配。"
+    },
+    {
+      "n": 41, "section": "r3", "type": "mcq",
+      "prompt": "我们小时候，下了课都在外边玩儿游戏，那时候的游戏是运动。现在的孩子也玩儿游戏，他们在家里，坐在电脑桌前，玩儿的是电脑游戏。\n★现在的孩子们喜欢：",
+      "choices": [ { "key": "A", "text": "运动" }, { "key": "B", "text": "玩儿电脑游戏" }, { "key": "C", "text": "在外边玩儿游戏" } ],
+      "answer": "B",
+      "explanation": "短文说现在的孩子在家里“玩儿的是电脑游戏”。"
+    },
+    {
+      "n": 42, "section": "r3", "type": "mcq",
+      "prompt": "我女儿和白先生的儿子在一个学校上学。他儿子跟我女儿一样，都上三年级，但是不同班。他家孩子在一班，我女儿在四班。他们常常一起玩儿。\n★白先生的儿子：",
+      "choices": [ { "key": "A", "text": "和我女儿不同班" }, { "key": "B", "text": "和我是同学" }, { "key": "C", "text": "不认识我女儿" } ],
+      "answer": "A",
+      "explanation": "“他儿子跟我女儿……不同班”，且“常常一起玩儿”。"
+    },
+    {
+      "n": 43, "section": "r3", "type": "mcq",
+      "prompt": "在中国，去朋友家玩儿，离开时朋友可能对你说“慢走”，很多外国人听不明白。其实他们的意思是让你在回去的路上小心点儿，不是让你慢点儿走。\n★朋友说“慢走”的意思可能是：",
+      "choices": [ { "key": "A", "text": "路上小心" }, { "key": "B", "text": "别走得太快" }, { "key": "C", "text": "欢迎再来" } ],
+      "answer": "A",
+      "explanation": "文中解释“慢走”是让你回去的路上小心点儿。"
+    },
+    {
+      "n": 44, "section": "r3", "type": "mcq",
+      "prompt": "我丈夫每天五点多起床，吃了早饭就去上班。我让他多休息休息，但是他说：“那么多病人都在等我，我能休息吗？”我真希望丈夫别那么累。\n★我丈夫是：",
+      "choices": [ { "key": "A", "text": "老师" }, { "key": "B", "text": "经理" }, { "key": "C", "text": "医生" } ],
+      "answer": "C",
+      "explanation": "“那么多病人都在等我”说明丈夫是医生。"
+    },
+    {
+      "n": 45, "section": "r3", "type": "mcq",
+      "prompt": "我想买一辆 10 万左右的车，有了车以后会更方便。上下班路上，可以接送孩子上下学。周末可以开车出去玩儿，蓝蓝的天，白白的云，绿绿的草地，会让我们觉得很舒服。\n★他为什么要买车？",
+      "choices": [ { "key": "A", "text": "车很便宜" }, { "key": "B", "text": "会很方便" }, { "key": "C", "text": "坐着舒服" } ],
+      "answer": "B",
+      "explanation": "第一句就说“有了车以后会更方便”。"
+    },
+    {
+      "n": 46, "section": "r3", "type": "mcq",
+      "prompt": "我最大的兴趣是看书。没事的时候，经常找一个安静的地方，静静地坐下来，边喝茶边读书。看累了的时候，站起来看看远方的绿树，或者运动一下。这就是我最大的快乐。\n★我喜欢：",
+      "choices": [ { "key": "A", "text": "坐下来看远方" }, { "key": "B", "text": "站起来看书" }, { "key": "C", "text": "坐下来读书" } ],
+      "answer": "C",
+      "explanation": "“静静地坐下来，边喝茶边读书”即坐下来读书。"
+    },
+    {
+      "n": 47, "section": "r3", "type": "mcq",
+      "prompt": "我想找几个关于中国节日文化的小故事，明天要给班上的学生讲，你那儿有吗？\n★他最可能是做什么的？",
+      "choices": [ { "key": "A", "text": "老师" }, { "key": "B", "text": "医生" }, { "key": "C", "text": "司机" } ],
+      "answer": "A",
+      "explanation": "“给班上的学生讲”说明他是老师。"
+    },
+    {
+      "n": 48, "section": "r3", "type": "mcq",
+      "prompt": "看书时会看到一些历史上的人或者国家的名字，这些字现在很多都不用了，想要知道这些字的读音和意思就要字典的帮助，所以有本字典很方便。\n★看书时会看到：",
+      "choices": [ { "key": "A", "text": "现在的名人" }, { "key": "B", "text": "不认识的字" }, { "key": "C", "text": "汉字的读音" } ],
+      "answer": "B",
+      "explanation": "“这些字现在很多都不用了”，需要查字典，即不认识的字。"
+    },
+    {
+      "n": 49, "section": "r3", "type": "mcq",
+      "prompt": "我家楼下有一家旧车店，卖“二手”自行车。没有那么多钱买新车的人，可以到这儿来买辆旧的骑骑，特别便宜，也方便。\n★“二手”车的意思是：",
+      "choices": [ { "key": "A", "text": "便宜车" }, { "key": "B", "text": "新车" }, { "key": "C", "text": "旧车" } ],
+      "answer": "C",
+      "explanation": "文中说“二手”车是旧车店卖的旧车。"
+    },
+    {
+      "n": 50, "section": "r3", "type": "mcq",
+      "prompt": "现在的“小胖子”越来越多了，因为现在的孩子吃得越来越多，越来越不爱运动，吃饭的时候不爱吃菜，只爱吃肉，还喜欢吃甜的，这样当然会越来越胖了。\n★“小胖子”们：",
+      "choices": [ { "key": "A", "text": "爱吃菜" }, { "key": "B", "text": "爱吃肉" }, { "key": "C", "text": "爱运动" } ],
+      "answer": "B",
+      "explanation": "文中说他们“不爱吃菜，只爱吃肉”，也不爱运动。"
+    },
+    {
+      "n": 51, "section": "r4", "type": "order",
+      "prompt": "坐飞机　是　来　我们　的　成都",
+      "choices": [ { "key": "A", "text": "来成都的是我们坐飞机。" }, { "key": "B", "text": "我们是坐飞机来成都的。" }, { "key": "C", "text": "是坐飞机我们来成都的。" } ],
+      "answer": "B",
+      "explanation": "“我们是坐飞机来成都的”是“是……的”强调方式的正确语序。"
+    },
+    {
+      "n": 52, "section": "r4", "type": "order",
+      "prompt": "感兴趣　画画儿　对　妹妹　很",
+      "choices": [ { "key": "A", "text": "很感兴趣妹妹对画画儿。" }, { "key": "B", "text": "画画儿对妹妹很感兴趣。" }, { "key": "C", "text": "妹妹对画画儿很感兴趣。" } ],
+      "answer": "C",
+      "explanation": "正确语序：主语“妹妹”＋“对画画儿”＋“很感兴趣”。"
+    },
+    {
+      "n": 53, "section": "r4", "type": "order",
+      "prompt": "的时候　要　小心点儿　爬山",
+      "choices": [ { "key": "A", "text": "要小心点儿的时候爬山。" }, { "key": "B", "text": "爬山要小心点儿的时候。" }, { "key": "C", "text": "爬山的时候要小心点儿。" } ],
+      "answer": "C",
+      "explanation": "“爬山的时候”作时间状语，放在“要小心点儿”前。"
+    },
+    {
+      "n": 54, "section": "r4", "type": "order",
+      "prompt": "我　都　一两杯　喝　咖啡　每天",
+      "choices": [ { "key": "A", "text": "我每天喝都一两杯咖啡。" }, { "key": "B", "text": "我每天都喝一两杯咖啡。" }, { "key": "C", "text": "我每天喝一两杯咖啡都。" } ],
+      "answer": "B",
+      "explanation": "频率副词“都”放在动词“喝”前：每天都喝。"
+    },
+    {
+      "n": 55, "section": "r4", "type": "order",
+      "prompt": "以前　银行　在　我　工作　两年　了",
+      "choices": [ { "key": "A", "text": "我以前在银行两年了工作。" }, { "key": "B", "text": "我以前在银行工作了两年。" }, { "key": "C", "text": "我在银行以前工作了两年。" } ],
+      "answer": "B",
+      "explanation": "时间“以前”在前，“工作了两年”是动词＋时量补语。"
+    },
+    {
+      "n": 56, "section": "h1", "type": "char",
+      "prompt": "这（　　）小猫叫什么名字？",
+      "choices": [ { "key": "A", "text": "只" }, { "key": "B", "text": "支" } ],
+      "answer": "A",
+      "explanation": "“只”是小动物的量词：一只小猫。"
+    },
+    {
+      "n": 57, "section": "h1", "type": "char",
+      "prompt": "（　　）学老师的办公室不在这层。",
+      "choices": [ { "key": "A", "text": "楼" }, { "key": "B", "text": "数" } ],
+      "answer": "B",
+      "explanation": "shù xué = 数学，数学老师。"
+    },
+    {
+      "n": 58, "section": "h1", "type": "char",
+      "prompt": "我从图书馆借了一本汉语（　　）典。",
+      "choices": [ { "key": "A", "text": "同" }, { "key": "B", "text": "词" } ],
+      "answer": "B",
+      "explanation": "cí diǎn = 词典，汉语词典。"
+    },
+    {
+      "n": 59, "section": "h1", "type": "char",
+      "prompt": "今天没有（　　）阳，天气很冷。",
+      "choices": [ { "key": "A", "text": "犬" }, { "key": "B", "text": "太" } ],
+      "answer": "B",
+      "explanation": "tài yáng = 太阳，没有太阳。"
+    },
+    {
+      "n": 60, "section": "h1", "type": "char",
+      "prompt": "你女儿的房间打扫得真干（　　）！",
+      "choices": [ { "key": "A", "text": "静" }, { "key": "B", "text": "净" } ],
+      "answer": "B",
+      "explanation": "gān jìng = 干净，打扫得干净。"
+    },
+    {
+      "n": 61, "section": "h2", "type": "char",
+      "prompt": "孩子们都学会游_____了。",
+      "choices": [ { "key": "A", "text": "冰" }, { "key": "B", "text": "泳" } ],
+      "answer": "B",
+      "explanation": "yóu yǒng = 游泳。"
+    },
+    {
+      "n": 62, "section": "h2", "type": "char",
+      "prompt": "请______，这儿有人吗？",
+      "choices": [ { "key": "A", "text": "间" }, { "key": "B", "text": "问" } ],
+      "answer": "B",
+      "explanation": "qǐng wèn = 请问，礼貌问句。"
+    },
+    {
+      "n": 63, "section": "h2", "type": "char",
+      "prompt": "你觉得这条_____色裙子好看吗？",
+      "choices": [ { "key": "A", "text": "白" }, { "key": "B", "text": "百" } ],
+      "answer": "A",
+      "explanation": "bái sè = 白色，颜色用“白”。"
+    },
+    {
+      "n": 64, "section": "h2", "type": "char",
+      "prompt": "下个星期要考试，你_____备好了吗？",
+      "choices": [ { "key": "A", "text": "难" }, { "key": "B", "text": "准" } ],
+      "answer": "B",
+      "explanation": "zhǔn bèi = 准备。"
+    },
+    {
+      "n": 65, "section": "h2", "type": "char",
+      "prompt": "她怎么_____了，我看她刚才还很高兴啊。",
+      "choices": [ { "key": "A", "text": "哭" }, { "key": "B", "text": "笑" } ],
+      "answer": "A",
+      "explanation": "“刚才还很高兴”说明现在反常地哭了。"
+    }
+  ]
+}
