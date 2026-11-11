@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import QuestionCard from './QuestionCard.jsx'
-import MiniPlayer from './MiniPlayer.jsx'
-import FullPlayer from './FullPlayer.jsx'
+import ControlBar from './ControlBar.jsx'
 import ScoreSummary from './ScoreSummary.jsx'
 import { loadProgress, saveProgress } from '../lib/storage.js'
 
@@ -15,16 +14,12 @@ export default function PlayerScreen() {
   const [score, setScore] = useState(null)
   const [scoreOpen, setScoreOpen] = useState(false)
   const [gridOpen, setGridOpen] = useState(false)
-  const [fullOpen, setFullOpen] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
   const [rate, setRate] = useState(1)
-  const [autoFollow, setAutoFollow] = useState(true)
   const [focusN, setFocusN] = useState(1)
 
   const audioRef = useRef(null)
-  const lastSegNRef = useRef(null)
 
   // ---- load pack + saved progress -------------------------------------
   useEffect(() => {
@@ -68,7 +63,11 @@ export default function PlayerScreen() {
     [persist, score]
   )
 
-  // ---- audio helpers ---------------------------------------------------
+  // ---- question = track helpers ---------------------------------------
+  const focusQ = pack
+    ? pack.questions.find((q) => q.n === focusN) || pack.questions[0]
+    : null
+
   const seek = useCallback((t) => {
     const a = audioRef.current
     if (!a) return
@@ -76,19 +75,41 @@ export default function PlayerScreen() {
     setCurrentTime(a.currentTime)
   }, [])
 
+  const inFocusSeg = useCallback(() => {
+    const a = audioRef.current
+    if (!a || !focusQ || focusQ.audioStart == null) return false
+    return a.currentTime >= focusQ.audioStart && a.currentTime < focusQ.audioEnd
+  }, [focusQ])
+
+  // play/pause the current question's "track"
   const togglePlay = useCallback(() => {
     const a = audioRef.current
-    if (!a) return
-    if (a.paused) {
-      a.play().catch(() => {})
-    } else {
+    if (!a || !focusQ || focusQ.audioStart == null) return
+    if (!a.paused) {
       a.pause()
+      return
     }
-  }, [])
+    if (!inFocusSeg()) seek(focusQ.audioStart)
+    a.play().catch(() => {})
+  }, [focusQ, inFocusSeg, seek])
 
-  const skip = useCallback(
-    (delta) => seek((audioRef.current?.currentTime || 0) + delta),
-    [seek]
+  // move between questions like tracks: keep playback going on the new track
+  const goTo = useCallback(
+    (n) => {
+      if (!pack) return
+      const clamped = Math.max(1, Math.min(n, pack.questions.length))
+      setFocusN(clamped)
+      const q = pack.questions.find((x) => x.n === clamped)
+      const a = audioRef.current
+      if (!a || !q) return
+      if (q.audioStart == null) {
+        a.pause()
+        return
+      }
+      const inSeg = a.currentTime >= q.audioStart && a.currentTime < q.audioEnd
+      if (!inSeg) seek(q.audioStart)
+    },
+    [pack, seek]
   )
 
   const changeRate = useCallback((r) => {
@@ -96,68 +117,19 @@ export default function PlayerScreen() {
     if (audioRef.current) audioRef.current.playbackRate = r
   }, [])
 
-  // ---- one-question focus + auto-follow --------------------------------
-  const listening = useMemo(
-    () => (pack ? pack.questions.filter((q) => q.audioStart != null) : []),
-    [pack]
-  )
-
-  const currentN = useMemo(() => {
-    if (!listening.length) return null
-    let cur = null
-    for (const q of listening) {
-      if (currentTime >= q.audioStart && currentTime < q.audioEnd) {
-        cur = q.n
-        break
-      }
-    }
-    return cur
-  }, [listening, currentTime])
-
-  const goTo = useCallback(
-    (n) => {
-      if (!pack) return
-      const clamped = Math.max(1, Math.min(n, pack.questions.length))
-      setFocusN(clamped)
-      setAutoFollow(false)
-    },
-    [pack]
-  )
-
-  // follow audio segment changes
+  // ---- auto-advance to the next track when this one ends ---------------
   useEffect(() => {
-    if (currentN == null || currentN === lastSegNRef.current) return
-    lastSegNRef.current = currentN
-    if (autoFollow) setFocusN(currentN)
-  }, [currentN, autoFollow])
-
-  // play (or pause) the audio segment of a question, focusing it
-  const playSegment = useCallback(
-    (q) => {
-      const a = audioRef.current
-      if (!a) return
-      const inSeg = a.currentTime >= q.audioStart && a.currentTime < q.audioEnd
-      if (inSeg && !a.paused) {
-        a.pause()
-        return
-      }
-      if (!inSeg) seek(q.audioStart)
-      a.play().catch(() => {})
-      setFocusN(q.n)
-      setAutoFollow(true)
-    },
-    [seek]
-  )
-
-  // jump the track to a question's segment (from scrub ticks / score sheet)
-  const seekToQuestion = useCallback(
-    (q) => {
-      seek(q.audioStart)
-      setFocusN(q.n)
-      setAutoFollow(true)
-    },
-    [seek]
-  )
+    if (!playing || !pack || !focusQ || focusQ.audioStart == null) return
+    if (currentTime < focusQ.audioEnd) return
+    const next = pack.questions.find((q) => q.n > focusQ.n && q.audioStart != null)
+    const a = audioRef.current
+    if (next) {
+      setFocusN(next.n)
+      if (a) a.currentTime = next.audioStart
+    } else if (a) {
+      a.pause()
+    }
+  }, [currentTime, playing, pack, focusQ])
 
   // ---- scoring ---------------------------------------------------------
   const submit = useCallback(() => {
@@ -198,7 +170,6 @@ export default function PlayerScreen() {
   const total = pack.questions.length
   const answeredCount = pack.questions.filter((q) => answers[q.n] != null).length
   const base = `/tests/${pack.id}/`
-  const focusQ = pack.questions.find((q) => q.n === focusN) || pack.questions[0]
   const sectionOf = (q) => pack.sections.find((s) => s.id === q.section)
 
   return (
@@ -223,29 +194,6 @@ export default function PlayerScreen() {
         </button>
       </header>
 
-      <nav className="q-focus-bar" aria-label="题目导航">
-        <button
-          className="nav-arrow"
-          onClick={() => goTo(focusN - 1)}
-          disabled={focusN <= 1}
-          aria-label="上一题"
-        >
-          ‹
-        </button>
-        <button className="q-focus-count" onClick={() => setGridOpen(true)}>
-          <span className="q-focus-n">{focusN}</span>
-          <span className="q-focus-t">/ {total} 题 · 答题卡</span>
-        </button>
-        <button
-          className="nav-arrow"
-          onClick={() => goTo(focusN + 1)}
-          disabled={focusN >= total}
-          aria-label="下一题"
-        >
-          ›
-        </button>
-      </nav>
-
       <div className="q-focus">
         <QuestionCard
           key={focusQ.n}
@@ -254,65 +202,26 @@ export default function PlayerScreen() {
           base={base}
           selected={answers[focusQ.n]}
           onSelect={(key) => selectAnswer(focusQ.n, key)}
-          onPlaySegment={() => playSegment(focusQ)}
-          segPlaying={playing && currentN === focusQ.n}
-          segActive={currentN === focusQ.n}
         />
-
-        <div className="q-focus-foot">
-          <button
-            className="btn-nav"
-            onClick={() => goTo(focusN - 1)}
-            disabled={focusN <= 1}
-          >
-            ‹ 上一题
-          </button>
-          {focusN < total ? (
-            <button className="btn-nav btn-nav-next" onClick={() => goTo(focusN + 1)}>
-              下一题 ›
-            </button>
-          ) : (
-            <button className="btn-primary btn-nav-next" onClick={submit}>
-              交卷 / 查看成绩
-            </button>
-          )}
-        </div>
         <p className="hint">随时可改答案，交卷后仍可回来修改并重新交卷。</p>
       </div>
 
-      <MiniPlayer
-        playing={playing}
+      <ControlBar
+        focusN={focusN}
+        total={total}
+        hasAudio={focusQ.audioStart != null}
+        segStart={focusQ.audioStart ?? 0}
+        segEnd={focusQ.audioEnd ?? 0}
         currentTime={currentTime}
-        duration={duration || pack.audioDuration}
+        playing={playing}
         rate={rate}
-        listening={listening}
         onToggle={togglePlay}
-        onSkip={skip}
-        onSeek={seek}
-        onSeekQuestion={seekToQuestion}
+        onPrev={() => goTo(focusN - 1)}
+        onNext={() => goTo(focusN + 1)}
+        onSeekSeg={seek}
         onRate={changeRate}
-        onExpand={() => setFullOpen(true)}
+        onGrid={() => setGridOpen(true)}
       />
-
-      {fullOpen && (
-        <FullPlayer
-          pack={pack}
-          playing={playing}
-          currentTime={currentTime}
-          duration={duration || pack.audioDuration}
-          rate={rate}
-          listening={listening}
-          autoFollow={autoFollow}
-          currentN={currentN}
-          onToggle={togglePlay}
-          onSkip={skip}
-          onSeek={seek}
-          onSeekQuestion={seekToQuestion}
-          onRate={changeRate}
-          onAutoFollow={setAutoFollow}
-          onCollapse={() => setFullOpen(false)}
-        />
-      )}
 
       {gridOpen && (
         <div
@@ -368,7 +277,6 @@ export default function PlayerScreen() {
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
-        onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
         onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
       >
         <track kind="captions" />

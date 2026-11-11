@@ -8,47 +8,23 @@ export default function QuestionCard({
   base,
   selected,
   onSelect,
-  onPlaySegment,
-  segPlaying,
-  segActive,
 }) {
   const [showAnswer, setShowAnswer] = useState(false)
   const isListening = q.audioStart != null
 
   return (
-    <article
-      className={`q-card ${isListening ? 'q-card-listening' : ''} ${
-        segActive ? 'q-card-active' : ''
-      }`}
-      id={`q-${q.n}`}
-    >
+    <article className={`q-card ${isListening ? 'q-card-listening' : ''}`} id={`q-${q.n}`}>
       <header className="q-head">
         <span className="q-num">{q.n}</span>
         <div className="q-head-text">
           <span className="q-section">
             {section ? `${section.part} · ${section.title}` : q.type}
           </span>
-          {!isListening && <span className="time-chip time-chip-static">随时可答</span>}
+          <span className="time-chip time-chip-static">
+            {isListening ? `♪ ${fmtTime(q.audioStart)} – ${fmtTime(q.audioEnd)}` : '随时可答'}
+          </span>
         </div>
       </header>
-
-      {isListening && (
-        <button
-          className={`audio-seg-btn ${segPlaying ? 'audio-seg-on' : ''}`}
-          onClick={onPlaySegment}
-          aria-label={`${segPlaying ? '暂停' : '播放'}第 ${q.n} 题音频 ${fmtTime(q.audioStart)} 到 ${fmtTime(q.audioEnd)}`}
-        >
-          <span className="audio-seg-icon" aria-hidden="true">
-            {segPlaying ? '❚❚' : '▶'}
-          </span>
-          <span className="audio-seg-label">
-            {segPlaying ? '正在播放本题音频' : '播放本题音频'}
-          </span>
-          <span className="audio-seg-time">
-            {fmtTime(q.audioStart)} – {fmtTime(q.audioEnd)}
-          </span>
-        </button>
-      )}
 
       <div className="q-body">
         <QContent q={q} base={base} selected={selected} onSelect={onSelect} />
