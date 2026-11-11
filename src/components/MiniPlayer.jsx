@@ -3,7 +3,7 @@ import { fmtTime } from '../lib/storage.js'
 
 const RATES = [0.75, 1, 1.25, 1.5]
 
-export function ScrubBar({ currentTime, duration, listening, onSeek, big = false }) {
+export function ScrubBar({ currentTime, duration, listening, onSeek, onSeekQuestion, big = false }) {
   const trackRef = useRef(null)
   const pct = duration > 0 ? Math.min(100, (currentTime / duration) * 100) : 0
 
@@ -18,6 +18,8 @@ export function ScrubBar({ currentTime, duration, listening, onSeek, big = false
     },
     [duration, onSeek]
   )
+
+  const jumpToQuestion = onSeekQuestion || ((q) => onSeek(q.audioStart))
 
   return (
     <div
@@ -59,7 +61,7 @@ export function ScrubBar({ currentTime, duration, listening, onSeek, big = false
             onTouchStart={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation()
-              onSeek(q.audioStart)
+              jumpToQuestion(q)
             }}
           >
             {big && <span className="tick-num">{q.n}</span>}
@@ -80,9 +82,12 @@ export default function MiniPlayer({
   onToggle,
   onSkip,
   onSeek,
+  onSeekQuestion,
   onRate,
   onExpand,
 }) {
+  const cycleRate = () => onRate(RATES[(RATES.indexOf(rate) + 1) % RATES.length])
+
   return (
     <div className="mini-player">
       <ScrubBar
@@ -90,10 +95,11 @@ export default function MiniPlayer({
         duration={duration}
         listening={listening}
         onSeek={onSeek}
+        onSeekQuestion={onSeekQuestion}
       />
       <div className="mini-row">
         <button className="mini-play" onClick={onToggle} aria-label={playing ? '暂停' : '播放'}>
-          {playing ? '⏸' : '▶'}
+          {playing ? '❚❚' : '▶'}
         </button>
         <button className="mini-skip" onClick={() => onSkip(-10)} aria-label="后退 10 秒">
           ⏪10
@@ -104,17 +110,13 @@ export default function MiniPlayer({
         <span className="mini-time">
           {fmtTime(currentTime)} / {fmtTime(duration)}
         </span>
-        <div className="rate-menu" role="group" aria-label="播放速度">
-          {RATES.map((r) => (
-            <button
-              key={r}
-              className={`rate-btn ${rate === r ? 'rate-on' : ''}`}
-              onClick={() => onRate(r)}
-            >
-              {r}×
-            </button>
-          ))}
-        </div>
+        <button
+          className="rate-btn rate-cycle"
+          onClick={cycleRate}
+          aria-label={`播放速度 ${rate} 倍，点击切换`}
+        >
+          {rate}×
+        </button>
         <button className="mini-expand" onClick={onExpand} aria-label="展开播放器">
           ⌃
         </button>

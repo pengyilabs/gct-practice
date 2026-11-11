@@ -14,19 +14,17 @@ export default function PlayerScreen() {
   const [answers, setAnswers] = useState({})
   const [score, setScore] = useState(null)
   const [scoreOpen, setScoreOpen] = useState(false)
+  const [gridOpen, setGridOpen] = useState(false)
   const [fullOpen, setFullOpen] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [rate, setRate] = useState(1)
   const [autoFollow, setAutoFollow] = useState(true)
-  const [scrolledAway, setScrolledAway] = useState(false)
+  const [focusN, setFocusN] = useState(1)
 
   const audioRef = useRef(null)
-  const cardRefs = useRef(new Map())
   const lastSegNRef = useRef(null)
-  const programmaticScrollRef = useRef(0)
-  const rafRef = useRef(0)
 
   // ---- load pack + saved progress -------------------------------------
   useEffect(() => {
@@ -98,17 +96,7 @@ export default function PlayerScreen() {
     if (audioRef.current) audioRef.current.playbackRate = r
   }, [])
 
-  // ---- auto-follow -----------------------------------------------------
-  const scrollToQuestion = useCallback((n) => {
-    const el = cardRefs.current.get(n)
-    if (!el) return
-    programmaticScrollRef.current = Date.now()
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    setTimeout(() => {
-      programmaticScrollRef.current = Date.now()
-    }, 800)
-  }, [])
-
+  // ---- one-question focus + auto-follow --------------------------------
   const listening = useMemo(
     () => (pack ? pack.questions.filter((q) => q.audioStart != null) : []),
     [pack]
@@ -126,49 +114,50 @@ export default function PlayerScreen() {
     return cur
   }, [listening, currentTime])
 
+  const goTo = useCallback(
+    (n) => {
+      if (!pack) return
+      const clamped = Math.max(1, Math.min(n, pack.questions.length))
+      setFocusN(clamped)
+      setAutoFollow(false)
+    },
+    [pack]
+  )
+
   // follow audio segment changes
   useEffect(() => {
     if (currentN == null || currentN === lastSegNRef.current) return
     lastSegNRef.current = currentN
-    if (autoFollow) scrollToQuestion(currentN)
-  }, [currentN, autoFollow, scrollToQuestion])
+    if (autoFollow) setFocusN(currentN)
+  }, [currentN, autoFollow])
 
-  const checkScrolledAway = useCallback(() => {
-    if (currentN == null) {
-      setScrolledAway(false)
-      return
-    }
-    const el = cardRefs.current.get(currentN)
-    if (!el) return
-    const r = el.getBoundingClientRect()
-    const visible = r.bottom > 90 && r.top < window.innerHeight - 140
-    setScrolledAway(!visible)
-  }, [currentN])
-
-  // manual scroll detection + visibility
-  useEffect(() => {
-    const onScroll = () => {
-      if (Date.now() - programmaticScrollRef.current > 400) {
-        setAutoFollow(false)
+  // play (or pause) the audio segment of a question, focusing it
+  const playSegment = useCallback(
+    (q) => {
+      const a = audioRef.current
+      if (!a) return
+      const inSeg = a.currentTime >= q.audioStart && a.currentTime < q.audioEnd
+      if (inSeg && !a.paused) {
+        a.pause()
+        return
       }
-      cancelAnimationFrame(rafRef.current)
-      rafRef.current = requestAnimationFrame(checkScrolledAway)
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      cancelAnimationFrame(rafRef.current)
-    }
-  }, [checkScrolledAway])
+      if (!inSeg) seek(q.audioStart)
+      a.play().catch(() => {})
+      setFocusN(q.n)
+      setAutoFollow(true)
+    },
+    [seek]
+  )
 
-  useEffect(() => {
-    checkScrolledAway()
-  }, [currentN, checkScrolledAway])
-
-  const backToCurrent = useCallback(() => {
-    if (currentN != null) scrollToQuestion(currentN)
-    setAutoFollow(true)
-  }, [currentN, scrollToQuestion])
+  // jump the track to a question's segment (from scrub ticks / score sheet)
+  const seekToQuestion = useCallback(
+    (q) => {
+      seek(q.audioStart)
+      setFocusN(q.n)
+      setAutoFollow(true)
+    },
+    [seek]
+  )
 
   // ---- scoring ---------------------------------------------------------
   const submit = useCallback(() => {
@@ -206,8 +195,10 @@ export default function PlayerScreen() {
   }
   if (!pack) return <div className="screen screen-center"><p className="hint">正在加载练习…</p></div>
 
+  const total = pack.questions.length
   const answeredCount = pack.questions.filter((q) => answers[q.n] != null).length
   const base = `/tests/${pack.id}/`
+  const focusQ = pack.questions.find((q) => q.n === focusN) || pack.questions[0]
   const sectionOf = (q) => pack.sections.find((s) => s.id === q.section)
 
   return (
@@ -219,7 +210,7 @@ export default function PlayerScreen() {
         <div className="player-title-wrap">
           <h1 className="player-title">{pack.title}</h1>
           <p className="player-progress">
-            已答 {answeredCount} / {pack.questions.length}
+            已答 {answeredCount} / {total}
           </p>
         </div>
         <button
@@ -232,41 +223,62 @@ export default function PlayerScreen() {
         </button>
       </header>
 
-      <div className="question-feed">
-        {pack.questions.map((q) => (
-          <QuestionCard
-            key={q.n}
-            question={q}
-            section={sectionOf(q)}
-            base={base}
-            selected={answers[q.n]}
-            onSelect={(key) => selectAnswer(q.n, key)}
-            onSeek={seek}
-            onPlayFrom={() => {
-              seek(q.audioStart)
-              const a = audioRef.current
-              if (a && a.paused) a.play().catch(() => {})
-            }}
-            cardRef={(el) => {
-              if (el) cardRefs.current.set(q.n, el)
-              else cardRefs.current.delete(q.n)
-            }}
-          />
-        ))}
-
-        <div className="feed-end">
-          <button className="btn-primary btn-large" onClick={submit}>
-            交卷 / 查看成绩
-          </button>
-          <p className="hint">随时可改答案，交卷后仍可回来修改并重新交卷。</p>
-        </div>
-      </div>
-
-      {scrolledAway && currentN != null && (
-        <button className="back-to-current" onClick={backToCurrent}>
-          ↑ 回到当前（第 {currentN} 题）
+      <nav className="q-focus-bar" aria-label="题目导航">
+        <button
+          className="nav-arrow"
+          onClick={() => goTo(focusN - 1)}
+          disabled={focusN <= 1}
+          aria-label="上一题"
+        >
+          ‹
         </button>
-      )}
+        <button className="q-focus-count" onClick={() => setGridOpen(true)}>
+          <span className="q-focus-n">{focusN}</span>
+          <span className="q-focus-t">/ {total} 题 · 答题卡</span>
+        </button>
+        <button
+          className="nav-arrow"
+          onClick={() => goTo(focusN + 1)}
+          disabled={focusN >= total}
+          aria-label="下一题"
+        >
+          ›
+        </button>
+      </nav>
+
+      <div className="q-focus">
+        <QuestionCard
+          key={focusQ.n}
+          question={focusQ}
+          section={sectionOf(focusQ)}
+          base={base}
+          selected={answers[focusQ.n]}
+          onSelect={(key) => selectAnswer(focusQ.n, key)}
+          onPlaySegment={() => playSegment(focusQ)}
+          segPlaying={playing && currentN === focusQ.n}
+          segActive={currentN === focusQ.n}
+        />
+
+        <div className="q-focus-foot">
+          <button
+            className="btn-nav"
+            onClick={() => goTo(focusN - 1)}
+            disabled={focusN <= 1}
+          >
+            ‹ 上一题
+          </button>
+          {focusN < total ? (
+            <button className="btn-nav btn-nav-next" onClick={() => goTo(focusN + 1)}>
+              下一题 ›
+            </button>
+          ) : (
+            <button className="btn-primary btn-nav-next" onClick={submit}>
+              交卷 / 查看成绩
+            </button>
+          )}
+        </div>
+        <p className="hint">随时可改答案，交卷后仍可回来修改并重新交卷。</p>
+      </div>
 
       <MiniPlayer
         playing={playing}
@@ -277,6 +289,7 @@ export default function PlayerScreen() {
         onToggle={togglePlay}
         onSkip={skip}
         onSeek={seek}
+        onSeekQuestion={seekToQuestion}
         onRate={changeRate}
         onExpand={() => setFullOpen(true)}
       />
@@ -294,10 +307,44 @@ export default function PlayerScreen() {
           onToggle={togglePlay}
           onSkip={skip}
           onSeek={seek}
+          onSeekQuestion={seekToQuestion}
           onRate={changeRate}
           onAutoFollow={setAutoFollow}
           onCollapse={() => setFullOpen(false)}
         />
+      )}
+
+      {gridOpen && (
+        <div
+          className="sheet-overlay"
+          role="dialog"
+          aria-label="答题卡"
+          onClick={() => setGridOpen(false)}
+        >
+          <div className="score-sheet grid-sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="sheet-handle" aria-hidden="true" />
+            <h2 className="score-title">答题卡</h2>
+            <p className="hint">
+              已答 {answeredCount} / {total} · 点击题号跳转
+            </p>
+            <div className="grid-chips">
+              {pack.questions.map((q) => (
+                <button
+                  key={q.n}
+                  className={`grid-chip ${answers[q.n] != null ? 'grid-answered' : ''} ${
+                    q.n === focusN ? 'grid-focus' : ''
+                  }`}
+                  onClick={() => {
+                    setGridOpen(false)
+                    goTo(q.n)
+                  }}
+                >
+                  {q.n}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       )}
 
       {scoreOpen && (
@@ -308,7 +355,7 @@ export default function PlayerScreen() {
           onClose={() => setScoreOpen(false)}
           onJump={(n) => {
             setScoreOpen(false)
-            scrollToQuestion(n)
+            goTo(n)
           }}
         />
       )}

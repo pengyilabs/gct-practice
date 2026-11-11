@@ -15,6 +15,7 @@ export default function FullPlayer({
   onToggle,
   onSkip,
   onSeek,
+  onSeekQuestion,
   onRate,
   onAutoFollow,
   onCollapse,
@@ -46,6 +47,7 @@ export default function FullPlayer({
           duration={duration}
           listening={listening}
           onSeek={onSeek}
+          onSeekQuestion={onSeekQuestion}
         />
         <div className="full-times">
           <span>{fmtTime(currentTime)}</span>
@@ -88,7 +90,7 @@ export default function FullPlayer({
         </div>
 
         <p className="full-hint">
-          点击上方数字刻度可跳转到对应题目音频；滚动题目不会改变播放进度。
+          点击播放条上的题号刻度可跳到对应题目音频；手动切题会暂停自动跟随。
         </p>
       </div>
     </div>

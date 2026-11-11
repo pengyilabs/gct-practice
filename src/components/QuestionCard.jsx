@@ -8,17 +8,18 @@ export default function QuestionCard({
   base,
   selected,
   onSelect,
-  onSeek,
-  onPlayFrom,
-  cardRef,
+  onPlaySegment,
+  segPlaying,
+  segActive,
 }) {
   const [showAnswer, setShowAnswer] = useState(false)
   const isListening = q.audioStart != null
 
   return (
     <article
-      ref={cardRef}
-      className={`q-card ${isListening ? 'q-card-listening' : ''}`}
+      className={`q-card ${isListening ? 'q-card-listening' : ''} ${
+        segActive ? 'q-card-active' : ''
+      }`}
       id={`q-${q.n}`}
     >
       <header className="q-head">
@@ -27,36 +28,37 @@ export default function QuestionCard({
           <span className="q-section">
             {section ? `${section.part} · ${section.title}` : q.type}
           </span>
-          {isListening ? (
-            <button
-              className="time-chip"
-              onClick={() => onSeek(q.audioStart)}
-              title="跳到本题音频"
-            >
-              <span className="time-chip-n">{q.n}</span>
-              <span>
-                {fmtTime(q.audioStart)}–{fmtTime(q.audioEnd)}
-              </span>
-            </button>
-          ) : (
-            <span className="time-chip time-chip-static">随时可答</span>
-          )}
+          {!isListening && <span className="time-chip time-chip-static">随时可答</span>}
         </div>
       </header>
+
+      {isListening && (
+        <button
+          className={`audio-seg-btn ${segPlaying ? 'audio-seg-on' : ''}`}
+          onClick={onPlaySegment}
+          aria-label={`${segPlaying ? '暂停' : '播放'}第 ${q.n} 题音频 ${fmtTime(q.audioStart)} 到 ${fmtTime(q.audioEnd)}`}
+        >
+          <span className="audio-seg-icon" aria-hidden="true">
+            {segPlaying ? '❚❚' : '▶'}
+          </span>
+          <span className="audio-seg-label">
+            {segPlaying ? '正在播放本题音频' : '播放本题音频'}
+          </span>
+          <span className="audio-seg-time">
+            {fmtTime(q.audioStart)} – {fmtTime(q.audioEnd)}
+          </span>
+        </button>
+      )}
 
       <div className="q-body">
         <QContent q={q} base={base} selected={selected} onSelect={onSelect} />
       </div>
 
       <footer className="q-foot">
-        {isListening && (
-          <button className="btn-ghost" onClick={onPlayFrom}>
-            ▶ 从这里播放
-          </button>
-        )}
         <button
           className={`btn-ghost ${showAnswer ? 'btn-ghost-on' : ''}`}
           onClick={() => setShowAnswer((v) => !v)}
+          aria-expanded={showAnswer}
         >
           {showAnswer ? '收起答案' : '查看答案'}
         </button>
