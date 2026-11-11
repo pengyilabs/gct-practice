@@ -31,7 +31,7 @@ export default function PlayerScreen() {
   // ---- load pack + saved progress -------------------------------------
   useEffect(() => {
     let alive = true
-    fetch(`tests/${id}/pack.json`)
+    fetch(`/tests/${id}/pack.json`)
       .then((r) => {
         if (!r.ok) throw new Error('pack fetch failed: ' + r.status)
         return r.json()
@@ -207,7 +207,7 @@ export default function PlayerScreen() {
   if (!pack) return <div className="screen screen-center"><p className="hint">正在加载练习…</p></div>
 
   const answeredCount = pack.questions.filter((q) => answers[q.n] != null).length
-  const base = `tests/${pack.id}/`
+  const base = `/tests/${pack.id}/`
   const sectionOf = (q) => pack.sections.find((s) => s.id === q.section)
 
   return (

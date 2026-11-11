@@ -8,7 +8,7 @@ export default function App() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch('tests/index.json')
+    fetch('/tests/index.json')
       .then((r) => {
         if (!r.ok) throw new Error('manifest fetch failed: ' + r.status)
         return r.json()
