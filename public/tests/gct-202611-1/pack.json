@@ -6,16 +6,16 @@
   "audio": "audio.mp3",
   "audioDuration": 824,
   "sections": [
-    { "id": "l1", "part": "听力", "title": "第一部分 · 看图选择", "from": 1, "to": 5 },
-    { "id": "l2", "part": "听力", "title": "第二部分 · 判断对错", "from": 6, "to": 10 },
-    { "id": "l3", "part": "听力", "title": "第三部分 · 短对话", "from": 11, "to": 15 },
-    { "id": "l4", "part": "听力", "title": "第四部分 · 长对话", "from": 16, "to": 20 },
-    { "id": "r1", "part": "阅读", "title": "第一部分 · 选择合适的问答", "from": 21, "to": 30 },
-    { "id": "r2", "part": "阅读", "title": "第二部分 · 选词填空", "from": 31, "to": 40 },
-    { "id": "r3", "part": "阅读", "title": "第三部分 · 短文理解", "from": 41, "to": 50 },
-    { "id": "r4", "part": "阅读", "title": "第四部分 · 连词成句", "from": 51, "to": 55 },
-    { "id": "h1", "part": "汉字", "title": "第一部分 · 看拼音选汉字", "from": 56, "to": 60 },
-    { "id": "h2", "part": "汉字", "title": "第二部分 · 选字填空", "from": 61, "to": 65 }
+    { "id": "l1", "part": "听力", "title": "第一部分 · 看图选择", "instruction": "听对话，选择与对话内容一致的图片", "from": 1, "to": 5 },
+    { "id": "l2", "part": "听力", "title": "第二部分 · 判断对错", "instruction": "听句子，判断对错", "from": 6, "to": 10 },
+    { "id": "l3", "part": "听力", "title": "第三部分 · 短对话", "instruction": "听短对话，选择正确答案", "from": 11, "to": 15 },
+    { "id": "l4", "part": "听力", "title": "第四部分 · 长对话", "instruction": "听长对话，选择正确答案", "from": 16, "to": 20 },
+    { "id": "r1", "part": "阅读", "title": "第一部分 · 选择合适的问答", "instruction": "为每句话选择合适的回答", "from": 21, "to": 30 },
+    { "id": "r2", "part": "阅读", "title": "第二部分 · 选词填空", "instruction": "选择合适的词语填入括号", "from": 31, "to": 40 },
+    { "id": "r3", "part": "阅读", "title": "第三部分 · 短文理解", "instruction": "读短文，选择正确答案", "from": 41, "to": 50 },
+    { "id": "r4", "part": "阅读", "title": "第四部分 · 连词成句", "instruction": "连词成句，选出排列正确的一句", "from": 51, "to": 55 },
+    { "id": "h1", "part": "汉字", "title": "第一部分 · 看拼音选汉字", "instruction": "看拼音，选择正确的汉字", "from": 56, "to": 60 },
+    { "id": "h2", "part": "汉字", "title": "第二部分 · 选字填空", "instruction": "选择合适的汉字填入句中", "from": 61, "to": 65 }
   ],
   "questions": [
     {

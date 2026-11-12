@@ -71,6 +71,7 @@ export default function ControlBar({
   onSeekSeg,
   onRate,
   onGrid,
+  onSubmit,
 }) {
   const cycleRate = () => onRate(RATES[(RATES.indexOf(rate) + 1) % RATES.length])
   const len = Math.max(0, segEnd - segStart)
@@ -97,49 +98,51 @@ export default function ControlBar({
 
       <div className="ctrl-row">
         <button
-          className="ctrl-arrow"
-          onClick={onPrev}
-          disabled={focusN <= 1}
-          aria-label="上一题"
+          className="ctrl-chip ctrl-rate"
+          onClick={cycleRate}
+          aria-label={`播放速度 ${rate} 倍，点击切换`}
         >
-          ‹
-        </button>
-        <button
-          className="ctrl-play"
-          onClick={onToggle}
-          disabled={!hasAudio}
-          aria-label={playing ? '暂停' : '播放本题音频'}
-        >
-          {playing ? '❚❚' : '▶'}
-        </button>
-        <button
-          className="ctrl-arrow"
-          onClick={onNext}
-          disabled={focusN >= total}
-          aria-label="下一题"
-        >
-          ›
+          {rate}×
         </button>
 
-        <div className="ctrl-right">
+        <div className="ctrl-center">
           <button
-            className="ctrl-chip"
-            onClick={cycleRate}
-            aria-label={`播放速度 ${rate} 倍，点击切换`}
+            className="ctrl-arrow"
+            onClick={onPrev}
+            disabled={focusN <= 1}
+            aria-label="上一题"
           >
-            {rate}×
+            ‹
           </button>
           <button
-            className="ctrl-chip ctrl-grid"
-            onClick={onGrid}
-            aria-label={`答题卡，第 ${focusN} / ${total} 题`}
+            className="ctrl-play"
+            onClick={onToggle}
+            disabled={!hasAudio}
+            aria-label={playing ? '暂停' : '播放本题音频'}
           >
-            <span aria-hidden="true">▤</span>
-            <span>
-              {focusN}/{total}
-            </span>
+            {playing ? '❚❚' : '▶'}
           </button>
+          {focusN >= total ? (
+            <button className="ctrl-submit" onClick={onSubmit} aria-label="交卷查看成绩">
+              交卷
+            </button>
+          ) : (
+            <button className="ctrl-arrow" onClick={onNext} aria-label="下一题">
+              ›
+            </button>
+          )}
         </div>
+
+        <button
+          className="ctrl-chip ctrl-grid"
+          onClick={onGrid}
+          aria-label={`答题卡，第 ${focusN} / ${total} 题`}
+        >
+          <span aria-hidden="true">▤</span>
+          <span>
+            {focusN}/{total}
+          </span>
+        </button>
       </div>
     </div>
   )

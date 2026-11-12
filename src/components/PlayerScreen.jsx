@@ -18,6 +18,7 @@ export default function PlayerScreen() {
   const [currentTime, setCurrentTime] = useState(0)
   const [rate, setRate] = useState(1)
   const [focusN, setFocusN] = useState(1)
+  const [confirmExit, setConfirmExit] = useState(false)
 
   const audioRef = useRef(null)
 
@@ -89,6 +90,14 @@ export default function PlayerScreen() {
       a.pause()
       return
     }
+    if (!inFocusSeg()) seek(focusQ.audioStart)
+    a.play().catch(() => {})
+  }, [focusQ, inFocusSeg, seek])
+
+  // jump to the current question's audio segment and play it
+  const playQuestion = useCallback(() => {
+    const a = audioRef.current
+    if (!a || !focusQ || focusQ.audioStart == null) return
     if (!inFocusSeg()) seek(focusQ.audioStart)
     a.play().catch(() => {})
   }, [focusQ, inFocusSeg, seek])
@@ -171,37 +180,38 @@ export default function PlayerScreen() {
   const answeredCount = pack.questions.filter((q) => answers[q.n] != null).length
   const base = `/tests/${pack.id}/`
   const sectionOf = (q) => pack.sections.find((s) => s.id === q.section)
+  const focusSection = sectionOf(focusQ)
+  const titleParts = focusSection ? focusSection.title.split(' · ') : []
+  const kicker =
+    titleParts.length > 1 ? `${focusSection.part} · ${titleParts[0]}` : focusSection?.part
+  const headline =
+    titleParts.length > 1 ? titleParts.slice(1).join(' · ') : focusSection?.title
 
   return (
     <div className="screen player-screen">
-      <header className="player-top">
-        <Link to="/" className="icon-btn" aria-label="返回">
-          ‹
-        </Link>
-        <div className="player-title-wrap">
-          <h1 className="player-title">{pack.title}</h1>
-          <p className="player-progress">
-            已答 {answeredCount} / {total}
-          </p>
-        </div>
-        <button
-          className="icon-btn"
-          aria-label="交卷查看成绩"
-          onClick={submit}
-          title="交卷 / 查看成绩"
-        >
-          ✓
-        </button>
-      </header>
-
       <div className="q-focus">
+        {focusSection && (
+          <header className="article-head">
+            <div className="article-nav">
+              <button className="cancel-btn" onClick={() => setConfirmExit(true)}>
+                ✕ 退出练习
+              </button>
+              <span className="article-pack">{pack.title}</span>
+            </div>
+            <p className="article-kicker">{kicker}</p>
+            <h2 className="article-title">{headline}</h2>
+            {focusSection.instruction && (
+              <p className="article-lede">{focusSection.instruction}</p>
+            )}
+          </header>
+        )}
         <QuestionCard
           key={focusQ.n}
           question={focusQ}
-          section={sectionOf(focusQ)}
           base={base}
           selected={answers[focusQ.n]}
           onSelect={(key) => selectAnswer(focusQ.n, key)}
+          onPlayAudio={playQuestion}
         />
         <p className="hint">随时可改答案，交卷后仍可回来修改并重新交卷。</p>
       </div>
@@ -221,7 +231,30 @@ export default function PlayerScreen() {
         onSeekSeg={seek}
         onRate={changeRate}
         onGrid={() => setGridOpen(true)}
+        onSubmit={submit}
       />
+
+      {confirmExit && (
+        <div
+          className="sheet-overlay confirm-overlay"
+          role="dialog"
+          aria-label="退出练习"
+          onClick={() => setConfirmExit(false)}
+        >
+          <div className="confirm-card" onClick={(e) => e.stopPropagation()}>
+            <h2 className="confirm-title">退出练习？</h2>
+            <p className="hint">进度已保存，你可以随时回来继续答题。</p>
+            <div className="confirm-actions">
+              <button className="btn-ghost" onClick={() => setConfirmExit(false)}>
+                继续答题
+              </button>
+              <Link className="btn-primary" to="/">
+                退出练习
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
 
       {gridOpen && (
         <div
