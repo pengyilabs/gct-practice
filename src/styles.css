@@ -68,12 +68,10 @@ input {
 }
 
 .app-shell {
-  max-width: 480px;
-  margin: 0 auto;
+  width: 100%;
   min-height: 100vh;
   background: var(--bg);
   position: relative;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
 }
 
 .screen {
@@ -103,7 +101,7 @@ input {
 
 /* ============ home ============ */
 .home-hero {
-  padding: 34px 20px 12px;
+  padding: clamp(28px, 4vw, 52px) clamp(20px, 5vw, 72px) 12px;
   background:
     radial-gradient(1100px 380px at 85% -60px, rgba(124, 108, 255, 0.32), transparent 65%),
     radial-gradient(700px 300px at -10% 0%, rgba(34, 211, 238, 0.16), transparent 60%);
@@ -123,7 +121,7 @@ input {
 
 .hero-title {
   margin: 0;
-  font-size: 34px;
+  font-size: clamp(30px, 4.5vw, 52px);
   line-height: 1.2;
   font-weight: 900;
   letter-spacing: 0.01em;
@@ -143,7 +141,7 @@ input {
 }
 
 .home-controls {
-  padding: 18px 20px 6px;
+  padding: 18px clamp(20px, 5vw, 72px) 6px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -205,9 +203,9 @@ input {
 }
 
 .test-list {
-  padding: 12px 20px;
-  display: flex;
-  flex-direction: column;
+  padding: 12px clamp(20px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   gap: 14px;
 }
 
@@ -303,7 +301,7 @@ input {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 14px;
+  padding: 12px clamp(14px, 3vw, 40px);
   background: rgba(11, 13, 18, 0.88);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
@@ -345,7 +343,7 @@ input {
 
 /* ============ question focus (one at a time) ============ */
 .q-focus {
-  padding: 14px 14px 8px;
+  padding: 14px clamp(14px, 5vw, 80px) 8px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -355,7 +353,7 @@ input {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: clamp(16px, 2.5vw, 28px);
 }
 
 .q-card-listening {
@@ -416,14 +414,14 @@ input {
 
 .q-prompt {
   margin: 0 0 14px;
-  font-size: 16.5px;
+  font-size: clamp(16.5px, 1.4vw, 19px);
   line-height: 1.75;
   white-space: pre-line;
 }
 
 .q-statement {
   margin: 0 0 14px;
-  font-size: 18px;
+  font-size: clamp(18px, 1.6vw, 22px);
   font-weight: 500;
   line-height: 1.8;
   white-space: pre-line;
@@ -685,16 +683,15 @@ input {
 /* ============ control bar ============ */
 .ctrl-bar {
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 480px;
   z-index: 40;
   background: rgba(21, 25, 35, 0.96);
   backdrop-filter: blur(18px);
   border-top: 1px solid var(--line);
-  padding: 6px 16px calc(12px + env(safe-area-inset-bottom));
+  padding: 6px clamp(16px, 4vw, 56px) calc(12px + env(safe-area-inset-bottom));
   box-shadow: var(--shadow);
 }
 
@@ -855,11 +852,10 @@ input {
 
 .score-sheet {
   width: 100%;
-  max-width: 480px;
   background: linear-gradient(180deg, #1a2030, var(--bg) 60%);
   border-radius: 26px 26px 0 0;
   border-top: 1px solid var(--line);
-  padding: 12px 22px calc(28px + env(safe-area-inset-bottom));
+  padding: 12px clamp(22px, 5vw, 72px) calc(28px + env(safe-area-inset-bottom));
   max-height: 88vh;
   overflow-y: auto;
   animation: sheet-up 0.28s ease;
@@ -1041,10 +1037,39 @@ input {
   box-shadow: 0 8px 18px rgba(124, 108, 255, 0.35);
 }
 
-/* ============ desktop ============ */
-@media (min-width: 520px) {
-  .app-shell {
-    border-left: 1px solid var(--line);
-    border-right: 1px solid var(--line);
+/* ============ large screens ============ */
+@media (min-width: 900px) {
+  .q-head {
+    gap: 16px;
+  }
+
+  .q-num {
+    width: 46px;
+    height: 46px;
+    font-size: 19px;
+    border-radius: 14px;
+  }
+
+  .choice {
+    padding: 15px 18px;
+    font-size: 16.5px;
+  }
+
+  .ctrl-play {
+    width: 58px;
+    height: 58px;
+    font-size: 22px;
+  }
+
+  .ctrl-arrow {
+    width: 50px;
+    height: 50px;
+    font-size: 26px;
+  }
+
+  .score-breakdown {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
   }
 }
