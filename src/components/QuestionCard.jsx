@@ -1,30 +1,26 @@
 import { useState } from 'react'
 import ReviewBlock from './ReviewBlock.jsx'
-import { fmtTime } from '../lib/storage.js'
 
 export default function QuestionCard({
   question: q,
-  section,
   base,
   selected,
   onSelect,
+  onPlayAudio,
 }) {
   const [showAnswer, setShowAnswer] = useState(false)
   const isListening = q.audioStart != null
 
   return (
-    <article className={`q-card ${isListening ? 'q-card-listening' : ''}`} id={`q-${q.n}`}>
-      <header className="q-head">
-        <span className="q-num">{q.n}</span>
-        <div className="q-head-text">
-          <span className="q-section">
-            {section ? `${section.part} · ${section.title}` : q.type}
-          </span>
-          <span className="time-chip time-chip-static">
-            {isListening ? `♪ ${fmtTime(q.audioStart)} – ${fmtTime(q.audioEnd)}` : '随时可答'}
-          </span>
-        </div>
-      </header>
+    <article className="q-flat" id={`q-${q.n}`}>
+      <div className="q-meta">
+        <span className="q-label">第 {q.n} 题</span>
+        {isListening && onPlayAudio && (
+          <button className="btn-listen" onClick={onPlayAudio}>
+            ▶ 听本题
+          </button>
+        )}
+      </div>
 
       <div className="q-body">
         <QContent q={q} base={base} selected={selected} onSelect={onSelect} />
@@ -49,7 +45,6 @@ function QContent({ q, base, selected, onSelect }) {
   if (q.type === 'picture') {
     return (
       <>
-        <p className="q-prompt">{q.prompt}</p>
         {q.image && (
           <img
             className="q-image"
@@ -85,7 +80,6 @@ function QContent({ q, base, selected, onSelect }) {
             </span>
           ))}
         </div>
-        <p className="q-hint">连词成句：选出排列正确的一句</p>
         <ChoiceRow q={q} selected={selected} onSelect={onSelect} variant="sentence" />
       </>
     )
@@ -124,6 +118,8 @@ function ChoiceRow({ q, selected, onSelect, variant }) {
           >
             {variant === 'char' ? (
               <span className="char-glyph">{c.text}</span>
+            ) : variant === 'chip' ? (
+              <span className="char-glyph">{c.key}</span>
             ) : (
               <>
                 {variant !== 'tf' && <span className="choice-key">{c.key}</span>}
