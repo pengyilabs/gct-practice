@@ -8,8 +8,14 @@ export default function QuestionCard({
   onSelect,
   onPlayAudio,
 }) {
-  const [showAnswer, setShowAnswer] = useState(false)
+  // answered questions reopen the answer panel so their marks stay visible
+  const [showAnswer, setShowAnswer] = useState(selected != null)
   const isListening = q.audioStart != null
+
+  const choose = (key) => {
+    onSelect(key)
+    setShowAnswer(true)
+  }
 
   return (
     <article className="q-flat" id={`q-${q.n}`}>
@@ -23,7 +29,13 @@ export default function QuestionCard({
       </div>
 
       <div className="q-body">
-        <QContent q={q} base={base} selected={selected} onSelect={onSelect} />
+        <QContent
+          q={q}
+          base={base}
+          selected={selected}
+          onSelect={choose}
+          revealed={showAnswer}
+        />
       </div>
 
       <footer className="q-foot">
@@ -41,7 +53,7 @@ export default function QuestionCard({
   )
 }
 
-function QContent({ q, base, selected, onSelect }) {
+function QContent({ q, base, selected, onSelect, revealed }) {
   if (q.type === 'picture') {
     return (
       <>
@@ -54,7 +66,13 @@ function QContent({ q, base, selected, onSelect }) {
             decoding="async"
           />
         )}
-        <ChoiceRow q={q} selected={selected} onSelect={onSelect} variant="chip" />
+        <ChoiceRow
+          q={q}
+          selected={selected}
+          onSelect={onSelect}
+          revealed={revealed}
+          variant="chip"
+        />
       </>
     )
   }
@@ -66,7 +84,13 @@ function QContent({ q, base, selected, onSelect }) {
           <span className="star">★</span>
           {q.prompt}
         </p>
-        <ChoiceRow q={q} selected={selected} onSelect={onSelect} variant="tf" />
+        <ChoiceRow
+          q={q}
+          selected={selected}
+          onSelect={onSelect}
+          revealed={revealed}
+          variant="tf"
+        />
       </>
     )
   }
@@ -81,7 +105,13 @@ function QContent({ q, base, selected, onSelect }) {
             </span>
           ))}
         </div>
-        <ChoiceRow q={q} selected={selected} onSelect={onSelect} variant="sentence" />
+        <ChoiceRow
+          q={q}
+          selected={selected}
+          onSelect={onSelect}
+          revealed={revealed}
+          variant="sentence"
+        />
       </>
     )
   }
@@ -90,7 +120,13 @@ function QContent({ q, base, selected, onSelect }) {
     return (
       <>
         <p className="q-statement q-blank-sentence">{q.prompt}</p>
-        <ChoiceRow q={q} selected={selected} onSelect={onSelect} variant="char" />
+        <ChoiceRow
+          q={q}
+          selected={selected}
+          onSelect={onSelect}
+          revealed={revealed}
+          variant="char"
+        />
       </>
     )
   }
@@ -99,22 +135,31 @@ function QContent({ q, base, selected, onSelect }) {
   return (
     <>
       <p className="q-prompt">{q.prompt}</p>
-      <ChoiceRow q={q} selected={selected} onSelect={onSelect} variant="list" />
+      <ChoiceRow
+        q={q}
+        selected={selected}
+        onSelect={onSelect}
+        revealed={revealed}
+        variant="list"
+      />
     </>
   )
 }
 
-function ChoiceRow({ q, selected, onSelect, variant }) {
+function ChoiceRow({ q, selected, onSelect, revealed, variant }) {
   return (
     <div className={`choices choices-${variant}`} role="radiogroup" aria-label={`第 ${q.n} 题选项`}>
       {q.choices.map((c) => {
         const isSel = selected === c.key
+        const isRight = revealed && c.key === q.answer
+        const isWrong = revealed && isSel && c.key !== q.answer
+        const state = isRight ? 'choice-correct' : isWrong ? 'choice-wrong' : ''
         return (
           <button
             key={c.key}
             role="radio"
             aria-checked={isSel}
-            className={`choice choice-${variant} ${isSel ? 'choice-selected' : ''}`}
+            className={`choice choice-${variant} ${isSel ? 'choice-selected' : ''} ${state}`}
             onClick={() => onSelect(c.key)}
           >
             {variant === 'char' ? (
@@ -133,6 +178,11 @@ function ChoiceRow({ q, selected, onSelect, variant }) {
                   <span className="choice-text">{c.text}</span>
                 )}
               </>
+            )}
+            {(isRight || isWrong) && (
+              <span className={`choice-mark ${isRight ? 'choice-mark-ok' : 'choice-mark-bad'}`}>
+                {isRight ? '✓' : '✗'}
+              </span>
             )}
           </button>
         )

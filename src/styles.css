@@ -495,6 +495,57 @@ input {
   color: #fff;
 }
 
+/* ---- answer feedback (shown once the answer is revealed) ---- */
+.choice-correct {
+  border-color: var(--green);
+  background: rgba(52, 211, 153, 0.12);
+}
+
+.choice-wrong {
+  border-color: var(--red);
+  background: rgba(248, 113, 113, 0.12);
+}
+
+.choice-correct .choice-key {
+  background: var(--green);
+  color: #06251b;
+}
+
+.choice-wrong .choice-key {
+  background: var(--red);
+  color: #2a0b0b;
+}
+
+.choice-mark {
+  flex: 0 0 auto;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* centered variants keep the glyph centered: badge the mark in the corner */
+.choice-chip,
+.choice-tf,
+.choice-char {
+  position: relative;
+}
+
+.choice-chip .choice-mark,
+.choice-tf .choice-mark,
+.choice-char .choice-mark {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.choice-mark-ok {
+  color: var(--green);
+}
+
+.choice-mark-bad {
+  color: var(--red);
+}
+
 .choice-text {
   flex: 1;
 }
