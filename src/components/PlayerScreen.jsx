@@ -97,11 +97,16 @@ export default function PlayerScreen() {
   const togglePlay = useCallback(() => {
     const a = audioRef.current
     if (!a || !focusQ || focusQ.audioStart == null) return
+    // audio running through another question: slide it back to this one
+    if (!inFocusSeg()) {
+      seek(focusQ.audioStart)
+      if (a.paused) a.play().catch(() => {})
+      return
+    }
     if (!a.paused) {
       a.pause()
       return
     }
-    if (!inFocusSeg()) seek(focusQ.audioStart)
     a.play().catch(() => {})
   }, [focusQ, inFocusSeg, seek])
 
@@ -113,43 +118,19 @@ export default function PlayerScreen() {
     a.play().catch(() => {})
   }, [focusQ, inFocusSeg, seek])
 
-  // move between questions like tracks: keep playback going on the new track
+  // the recording is one continuous take: moving questions never touches playback
   const goTo = useCallback(
     (n) => {
       if (!pack) return
-      const clamped = Math.max(1, Math.min(n, pack.questions.length))
-      setFocusN(clamped)
-      const q = pack.questions.find((x) => x.n === clamped)
-      const a = audioRef.current
-      if (!a || !q) return
-      if (q.audioStart == null) {
-        a.pause()
-        return
-      }
-      const inSeg = a.currentTime >= q.audioStart && a.currentTime < q.audioEnd
-      if (!inSeg) seek(q.audioStart)
+      setFocusN(Math.max(1, Math.min(n, pack.questions.length)))
     },
-    [pack, seek]
+    [pack]
   )
 
   const changeRate = useCallback((r) => {
     setRate(r)
     if (audioRef.current) audioRef.current.playbackRate = r
   }, [])
-
-  // ---- auto-advance to the next track when this one ends ---------------
-  useEffect(() => {
-    if (!playing || !pack || !focusQ || focusQ.audioStart == null) return
-    if (currentTime < focusQ.audioEnd) return
-    const next = pack.questions.find((q) => q.n > focusQ.n && q.audioStart != null)
-    const a = audioRef.current
-    if (next) {
-      setFocusN(next.n)
-      if (a) a.currentTime = next.audioStart
-    } else if (a) {
-      a.pause()
-    }
-  }, [currentTime, playing, pack, focusQ])
 
   // ---- scoring ---------------------------------------------------------
   const submit = useCallback(() => {
@@ -197,6 +178,10 @@ export default function PlayerScreen() {
     titleParts.length > 1 ? `${focusSection.part} · ${titleParts[0]}` : focusSection?.part
   const headline =
     titleParts.length > 1 ? titleParts.slice(1).join(' · ') : focusSection?.title
+  // the audio may be running through another question; the bar should offer to
+  // jump to this one rather than claim it is playing here
+  const playingHere =
+    playing && currentTime >= focusQ.audioStart && currentTime < focusQ.audioEnd
 
   return (
     <div className="screen player-screen">
@@ -287,7 +272,7 @@ export default function PlayerScreen() {
           segStart={focusQ.audioStart ?? 0}
           segEnd={focusQ.audioEnd ?? 0}
           currentTime={currentTime}
-          playing={playing}
+          playing={playingHere}
           rate={rate}
           onToggle={togglePlay}
           onPrev={() => goTo(focusN - 1)}
