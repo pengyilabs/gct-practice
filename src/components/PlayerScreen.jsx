@@ -200,50 +200,99 @@ export default function PlayerScreen() {
 
   return (
     <div className="screen player-screen">
-      <div className="q-focus">
-        {focusSection && (
-          <header className="article-head">
-            <div className="article-nav">
-              <button className="cancel-btn" onClick={() => setConfirmExit(true)}>
-                ✕ 退出练习
-              </button>
-              <span className="article-pack">{pack.title}</span>
-            </div>
-            <p className="article-kicker">{kicker}</p>
-            <h2 className="article-title">{headline}</h2>
-            {focusSection.instruction && (
-              <p className="article-lede">{focusSection.instruction}</p>
-            )}
-          </header>
-        )}
-        <QuestionCard
-          key={focusQ.n}
-          question={focusQ}
-          base={base}
-          selected={answers[focusQ.n]}
-          onSelect={(key) => selectAnswer(focusQ.n, key)}
-          onPlayAudio={playQuestion}
-        />
-        <p className="hint">随时可改答案，交卷后仍可回来修改并重新交卷。</p>
-      </div>
+      <aside className="q-side" aria-label="题目列表">
+        <div className="q-side-head">
+          <p className="q-side-pack">{pack.title}</p>
+          <p className="q-side-progress">
+            已答 {answeredCount} / {total}
+          </p>
+          <div className="q-side-bar">
+            <i style={{ width: `${(answeredCount / total) * 100}%` }} />
+          </div>
+        </div>
 
-      <ControlBar
-        focusN={focusN}
-        total={total}
-        hasAudio={focusQ.audioStart != null}
-        segStart={focusQ.audioStart ?? 0}
-        segEnd={focusQ.audioEnd ?? 0}
-        currentTime={currentTime}
-        playing={playing}
-        rate={rate}
-        onToggle={togglePlay}
-        onPrev={() => goTo(focusN - 1)}
-        onNext={() => goTo(focusN + 1)}
-        onSeekSeg={seek}
-        onRate={changeRate}
-        onGrid={() => setGridOpen(true)}
-        onSubmit={submit}
-      />
+        <nav className="q-side-list">
+          {pack.sections.map((sec) => {
+            const secQs = pack.questions.filter((q) => q.section === sec.id)
+            if (!secQs.length) return null
+            return (
+              <div className="q-side-group" key={sec.id}>
+                <p className="q-side-sec">
+                  {sec.part} · {sec.title}
+                </p>
+                <div className="q-side-chips">
+                  {secQs.map((q) => (
+                    <button
+                      key={q.n}
+                      className={`q-side-chip ${answers[q.n] != null ? 'is-done' : ''} ${
+                        q.n === focusN ? 'is-focus' : ''
+                      }`}
+                      onClick={() => goTo(q.n)}
+                      aria-current={q.n === focusN ? 'true' : undefined}
+                      aria-label={`第 ${q.n} 题${answers[q.n] != null ? '，已答' : ''}`}
+                    >
+                      {q.n}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </nav>
+
+        <div className="q-side-foot">
+          <button className="btn-primary q-side-submit" onClick={submit}>
+            交卷
+          </button>
+        </div>
+      </aside>
+
+      <div className="player-main">
+        <div className="q-focus">
+          {focusSection && (
+            <header className="article-head">
+              <div className="article-nav">
+                <button className="cancel-btn" onClick={() => setConfirmExit(true)}>
+                  ✕ 退出练习
+                </button>
+                <span className="article-pack">{pack.title}</span>
+              </div>
+              <p className="article-kicker">{kicker}</p>
+              <h2 className="article-title">{headline}</h2>
+              {focusSection.instruction && (
+                <p className="article-lede">{focusSection.instruction}</p>
+              )}
+            </header>
+          )}
+          <QuestionCard
+            key={focusQ.n}
+            question={focusQ}
+            base={base}
+            selected={answers[focusQ.n]}
+            onSelect={(key) => selectAnswer(focusQ.n, key)}
+            onPlayAudio={playQuestion}
+          />
+          <p className="hint">随时可改答案，交卷后仍可回来修改并重新交卷。</p>
+        </div>
+
+        <ControlBar
+          focusN={focusN}
+          total={total}
+          hasAudio={focusQ.audioStart != null}
+          segStart={focusQ.audioStart ?? 0}
+          segEnd={focusQ.audioEnd ?? 0}
+          currentTime={currentTime}
+          playing={playing}
+          rate={rate}
+          onToggle={togglePlay}
+          onPrev={() => goTo(focusN - 1)}
+          onNext={() => goTo(focusN + 1)}
+          onSeekSeg={seek}
+          onRate={changeRate}
+          onGrid={() => setGridOpen(true)}
+          onSubmit={submit}
+        />
+      </div>
 
       {confirmExit && (
         <div
