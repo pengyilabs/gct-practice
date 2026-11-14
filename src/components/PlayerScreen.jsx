@@ -93,20 +93,15 @@ export default function PlayerScreen() {
     return a.currentTime >= focusQ.audioStart && a.currentTime < focusQ.audioEnd
   }, [focusQ])
 
-  // play/pause the current question's "track"
+  // play/pause this question's slice: pause always pauses, play always starts it
   const togglePlay = useCallback(() => {
     const a = audioRef.current
     if (!a || !focusQ || focusQ.audioStart == null) return
-    // audio running through another question: slide it back to this one
-    if (!inFocusSeg()) {
-      seek(focusQ.audioStart)
-      if (a.paused) a.play().catch(() => {})
-      return
-    }
     if (!a.paused) {
       a.pause()
       return
     }
+    if (!inFocusSeg()) seek(focusQ.audioStart)
     a.play().catch(() => {})
   }, [focusQ, inFocusSeg, seek])
 
@@ -178,10 +173,6 @@ export default function PlayerScreen() {
     titleParts.length > 1 ? `${focusSection.part} · ${titleParts[0]}` : focusSection?.part
   const headline =
     titleParts.length > 1 ? titleParts.slice(1).join(' · ') : focusSection?.title
-  // the audio may be running through another question; the bar should offer to
-  // jump to this one rather than claim it is playing here
-  const playingHere =
-    playing && currentTime >= focusQ.audioStart && currentTime < focusQ.audioEnd
 
   return (
     <div className="screen player-screen">
@@ -272,7 +263,7 @@ export default function PlayerScreen() {
           segStart={focusQ.audioStart ?? 0}
           segEnd={focusQ.audioEnd ?? 0}
           currentTime={currentTime}
-          playing={playingHere}
+          playing={playing}
           rate={rate}
           onToggle={togglePlay}
           onPrev={() => goTo(focusN - 1)}
