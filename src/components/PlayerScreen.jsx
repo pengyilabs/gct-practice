@@ -45,6 +45,17 @@ export default function PlayerScreen() {
     }
   }, [id])
 
+  // ---- warm the image cache so picture questions switch instantly -------
+  useEffect(() => {
+    if (!pack) return
+    pack.questions.forEach((q) => {
+      if (q.type === 'picture' && q.image) {
+        const img = new Image()
+        img.src = `/tests/${pack.id}/${q.image}`
+      }
+    })
+  }, [pack])
+
   // ---- persistence -----------------------------------------------------
   const persist = useCallback(
     (nextAnswers, nextScore) => {

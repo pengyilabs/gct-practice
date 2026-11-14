@@ -50,7 +50,8 @@ function QContent({ q, base, selected, onSelect }) {
             className="q-image"
             src={base + q.image}
             alt={`第 ${q.n} 题看图选项 A B C`}
-            loading="lazy"
+            loading="eager"
+            decoding="async"
           />
         )}
         <ChoiceRow q={q} selected={selected} onSelect={onSelect} variant="chip" />

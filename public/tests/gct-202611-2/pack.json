@@ -93,7 +93,7 @@
       "section": "l1",
       "type": "picture",
       "prompt": "听对话，选择与对话内容一致的图片",
-      "image": "img/p1_q1.png",
+      "image": "img/p1_q1.webp",
       "choices": [
         {
           "key": "A",
@@ -121,7 +121,7 @@
       "section": "l1",
       "type": "picture",
       "prompt": "听对话，选择与对话内容一致的图片",
-      "image": "img/p1_q2.png",
+      "image": "img/p1_q2.webp",
       "choices": [
         {
           "key": "A",
@@ -149,7 +149,7 @@
       "section": "l1",
       "type": "picture",
       "prompt": "听对话，选择与对话内容一致的图片",
-      "image": "img/p2_q3.png",
+      "image": "img/p2_q3.webp",
       "choices": [
         {
           "key": "A",
@@ -177,7 +177,7 @@
       "section": "l1",
       "type": "picture",
       "prompt": "听对话，选择与对话内容一致的图片",
-      "image": "img/p2_q4.png",
+      "image": "img/p2_q4.webp",
       "choices": [
         {
           "key": "A",
@@ -205,7 +205,7 @@
       "section": "l1",
       "type": "picture",
       "prompt": "听对话，选择与对话内容一致的图片",
-      "image": "img/p2_q5.png",
+      "image": "img/p2_q5.webp",
       "choices": [
         {
           "key": "A",
