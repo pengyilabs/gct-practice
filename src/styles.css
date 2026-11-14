@@ -913,6 +913,21 @@ input {
   white-space: nowrap;
 }
 
+/* where this question's slice sits inside the one continuous recording */
+.ctrl-whole {
+  font-size: 10.5px;
+  color: var(--muted);
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 400px) {
+  .ctrl-whole {
+    display: none;
+  }
+}
+
 .ctrl-noaudio {
   flex: 1;
   text-align: center;

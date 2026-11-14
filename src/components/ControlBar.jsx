@@ -63,6 +63,7 @@ export default function ControlBar({
   segStart,
   segEnd,
   currentTime,
+  duration,
   playing,
   rate,
   onToggle,
@@ -89,6 +90,11 @@ export default function ControlBar({
             onSeek={onSeekSeg}
           />
           <span className="ctrl-time">{fmtTime(len)}</span>
+          {duration > 0 && (
+            <span className="ctrl-whole">
+              全片 {fmtTime(currentTime)} / {fmtTime(duration)}
+            </span>
+          )}
         </div>
       ) : (
         <div className="ctrl-scrub-row">

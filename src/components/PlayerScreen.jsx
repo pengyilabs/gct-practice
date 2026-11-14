@@ -16,6 +16,7 @@ export default function PlayerScreen() {
   const [gridOpen, setGridOpen] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
   const [rate, setRate] = useState(1)
   const [focusN, setFocusN] = useState(1)
   const [confirmExit, setConfirmExit] = useState(false)
@@ -263,6 +264,7 @@ export default function PlayerScreen() {
           segStart={focusQ.audioStart ?? 0}
           segEnd={focusQ.audioEnd ?? 0}
           currentTime={currentTime}
+          duration={duration}
           playing={playing}
           rate={rate}
           onToggle={togglePlay}
@@ -351,6 +353,7 @@ export default function PlayerScreen() {
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
+        onLoadedMetadata={(e) => setDuration(e.currentTarget.duration || 0)}
         onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
       >
         <track kind="captions" />
