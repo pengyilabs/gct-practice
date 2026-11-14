@@ -257,8 +257,13 @@ export default function PlayerScreen() {
                 </button>
                 <span className="article-pack">{pack.title}</span>
               </div>
-              <p className="article-kicker">{kicker}</p>
-              <h2 className="article-title">{headline}</h2>
+              <h2 className="article-title">
+                <span className="article-kicker">{kicker}</span>
+                <span className="article-sep" aria-hidden="true">
+                  ·
+                </span>
+                {headline}
+              </h2>
               {focusSection.instruction && (
                 <p className="article-lede">{focusSection.instruction}</p>
               )}

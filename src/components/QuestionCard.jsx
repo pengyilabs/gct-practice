@@ -1,5 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ReviewBlock from './ReviewBlock.jsx'
+
+// height of the fixed control bar plus a little breathing room
+const BAR_CLEARANCE = 128
 
 export default function QuestionCard({
   question: q,
@@ -10,12 +13,24 @@ export default function QuestionCard({
 }) {
   // answered questions reopen the answer panel so their marks stay visible
   const [showAnswer, setShowAnswer] = useState(selected != null)
+  const [revealTick, setRevealTick] = useState(0)
+  const reviewRef = useRef(null)
   const isListening = q.audioStart != null
 
   const choose = (key) => {
     onSelect(key)
     setShowAnswer(true)
+    setRevealTick((t) => t + 1)
   }
+
+  // when a fresh answer opens below the fold, lift it above the control bar
+  useEffect(() => {
+    if (!revealTick) return
+    const el = reviewRef.current
+    if (!el) return
+    const overflow = el.getBoundingClientRect().bottom - (window.innerHeight - BAR_CLEARANCE)
+    if (overflow > 0) window.scrollBy({ top: overflow + 12, behavior: 'smooth' })
+  }, [revealTick])
 
   return (
     <article className="q-flat" id={`q-${q.n}`}>
@@ -48,7 +63,11 @@ export default function QuestionCard({
         </button>
       </footer>
 
-      {showAnswer && <ReviewBlock question={q} selected={selected} />}
+      {showAnswer && (
+        <div ref={reviewRef}>
+          <ReviewBlock question={q} selected={selected} />
+        </div>
+      )}
     </article>
   )
 }
