@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import ReviewBlock from './ReviewBlock.jsx'
 
-// height of the fixed control bar plus a little breathing room
-const BAR_CLEARANCE = 128
+// the bar is taller on phones (extra strip under the Netlify badge), so the
+// clearance is measured instead of hard-coded
+function barClearance() {
+  const bar = document.querySelector('.ctrl-bar')
+  return bar ? bar.getBoundingClientRect().height + 12 : 140
+}
 
 export default function QuestionCard({
   question: q,
@@ -28,7 +32,7 @@ export default function QuestionCard({
     if (!revealTick) return
     const el = reviewRef.current
     if (!el) return
-    const overflow = el.getBoundingClientRect().bottom - (window.innerHeight - BAR_CLEARANCE)
+    const overflow = el.getBoundingClientRect().bottom - (window.innerHeight - barClearance())
     if (overflow > 0) window.scrollBy({ top: overflow + 12, behavior: 'smooth' })
   }, [revealTick])
 

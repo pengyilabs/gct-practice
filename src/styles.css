@@ -1422,3 +1422,18 @@ input {
 .review-line + .review-en:last-child {
   margin-bottom: 0;
 }
+
+/* ============ Netlify badge clearance ============ */
+/* the deploy-preview badge floats over the bottom-right corner of the viewport,
+   so on phones the bar keeps an empty strip underneath instead of the badge
+   covering the transport controls */
+@media (max-width: 1023px) {
+  .ctrl-bar {
+    padding-bottom: calc(68px + env(safe-area-inset-bottom));
+  }
+
+  .player-screen {
+    padding-bottom: 196px;
+  }
+}
+
