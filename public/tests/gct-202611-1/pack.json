@@ -108,8 +108,8 @@
           "text": ""
         }
       ],
-      "audioStart": 0,
-      "audioEnd": 24.5,
+      "audioStart": 0.0,
+      "audioEnd": 32.81,
       "transcript": [
         "别看电视了。长时间看电视，对眼睛不好。",
         "好的，我去睡觉了。"
@@ -140,8 +140,8 @@
           "text": ""
         }
       ],
-      "audioStart": 32.86,
-      "audioEnd": 58.26,
+      "audioStart": 32.81,
+      "audioEnd": 65.03,
       "transcript": [
         "这是哪儿啊？你开错了吧？我们怎么回家呀？",
         "别着急，车上有电子地图。"
@@ -172,8 +172,8 @@
           "text": ""
         }
       ],
-      "audioStart": 65.04,
-      "audioEnd": 82.73,
+      "audioStart": 65.03,
+      "audioEnd": 90.23,
       "transcript": [
         "大卫很喜欢跑步。",
         "是啊，他跑得非常快。"
@@ -204,8 +204,8 @@
           "text": ""
         }
       ],
-      "audioStart": 82.73,
-      "audioEnd": 114.64,
+      "audioStart": 90.23,
+      "audioEnd": 123.43,
       "transcript": [
         "这是你妹妹让我买的火车票。",
         "你能帮我给她吗？",
@@ -238,8 +238,8 @@
           "text": ""
         }
       ],
-      "audioStart": 123.5,
-      "audioEnd": 144.27,
+      "audioStart": 123.43,
+      "audioEnd": 152.1,
       "transcript": [
         "你怎么了？怎么不跑了？",
         "今天不知道怎么了，脚一直疼。"
@@ -265,8 +265,8 @@
           "text": "错"
         }
       ],
-      "audioStart": 152.04,
-      "audioEnd": 167.08,
+      "audioStart": 152.1,
+      "audioEnd": 187.82,
       "transcript": [
         "家里一个鸡蛋也没有。",
         "明天早上吃什么呀？家里还有很多鸡蛋。"
@@ -292,8 +292,8 @@
           "text": "错"
         }
       ],
-      "audioStart": 167.08,
-      "audioEnd": 198.07,
+      "audioStart": 187.82,
+      "audioEnd": 217.31,
       "transcript": [
         "这个电影一点意思也没有。",
         "我们看书吧。",
@@ -321,8 +321,8 @@
           "text": "错"
         }
       ],
-      "audioStart": 198.07,
-      "audioEnd": 259.76,
+      "audioStart": 217.31,
+      "audioEnd": 259.64,
       "transcript": [
         "小周，你帮我看一下笔记本电脑吧。",
         "昨天我还能看电子邮件，今天突然就打不开了。",
@@ -352,8 +352,8 @@
           "text": "错"
         }
       ],
-      "audioStart": 259.76,
-      "audioEnd": 278.64,
+      "audioStart": 259.64,
+      "audioEnd": 289.34,
       "transcript": [
         "小刚在门口站了一个小时，小方也没出来。",
         "小刚在等人。"
@@ -379,8 +379,8 @@
           "text": "错"
         }
       ],
-      "audioStart": 289.36,
-      "audioEnd": 329.98,
+      "audioStart": 289.34,
+      "audioEnd": 339.03,
       "transcript": [
         "过去，我喜欢每天早上起床后，一边吃早饭，一边看报纸。",
         "现在我没有这个习惯了，因为太忙了，没时间了。",
@@ -412,8 +412,8 @@
           "text": "晚饭"
         }
       ],
-      "audioStart": 338.9,
-      "audioEnd": 376.75,
+      "audioStart": 339.03,
+      "audioEnd": 384.95,
       "transcript": [
         "我去准备晚饭，你们爱吃什么？",
         "我丈夫和我都爱吃鱼。",
@@ -445,8 +445,8 @@
           "text": "没做完"
         }
       ],
-      "audioStart": 385,
-      "audioEnd": 417.31,
+      "audioStart": 384.95,
+      "audioEnd": 426.8,
       "transcript": [
         "昨天的考试怎么样？都做完了没有？",
         "题太多，我没做完。",
@@ -478,8 +478,8 @@
           "text": "不冷不热"
         }
       ],
-      "audioStart": 417.31,
-      "audioEnd": 465.79,
+      "audioStart": 426.8,
+      "audioEnd": 474.65,
       "transcript": [
         "快要下雪了，我觉得比昨天更冷了。",
         "没关系，我穿的衣服比昨天多。",
@@ -511,8 +511,8 @@
           "text": "打电话"
         }
       ],
-      "audioStart": 465.79,
-      "audioEnd": 499.79,
+      "audioStart": 474.65,
+      "audioEnd": 509.24,
       "transcript": [
         "饭做好了，快过来吃。",
         "好，我打了电话就过去。",
@@ -544,8 +544,8 @@
           "text": "火车上"
         }
       ],
-      "audioStart": 499.79,
-      "audioEnd": 549.42,
+      "audioStart": 509.24,
+      "audioEnd": 556.5,
       "transcript": [
         "怎么还没到？我都看了三四个电影了。",
         "我们是从中国到美国，还要再飞五六个小时。",
@@ -579,8 +579,8 @@
           "text": "三个"
         }
       ],
-      "audioStart": 560.66,
-      "audioEnd": 611.56,
+      "audioStart": 556.5,
+      "audioEnd": 619.63,
       "transcript": [
         "这个房间是你的吗？",
         "不是，右边那个房间是我的，这是我妹妹的。",
@@ -616,8 +616,8 @@
           "text": "找饭馆"
         }
       ],
-      "audioStart": 619.68,
-      "audioEnd": 668.87,
+      "audioStart": 619.63,
+      "audioEnd": 676.68,
       "transcript": [
         "这椅子有点矮，坐着不舒服。",
         "没关系，我们去那边看看，那儿也有。",
@@ -655,8 +655,8 @@
           "text": "丈夫和妻子"
         }
       ],
-      "audioStart": 676.34,
-      "audioEnd": 716.47,
+      "audioStart": 676.68,
+      "audioEnd": 727.14,
       "transcript": [
         "今天好些了吗？",
         "这几天一直吃药，现在好些了，腿也不疼了。",
@@ -692,8 +692,8 @@
           "text": "还没复习"
         }
       ],
-      "audioStart": 716.47,
-      "audioEnd": 771.83,
+      "audioStart": 727.14,
+      "audioEnd": 781.16,
       "transcript": [
         "你怎么了？一天都不高兴。",
         "明天就要考试了，我一点都没复习呢。",
@@ -729,8 +729,8 @@
           "text": "蛋糕"
         }
       ],
-      "audioStart": 771.83,
-      "audioEnd": 816.81,
+      "audioStart": 781.16,
+      "audioEnd": 824.98,
       "transcript": [
         "你吃药了吗？",
         "还没有，我吃完饭再吃。",
