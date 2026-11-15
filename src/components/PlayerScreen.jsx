@@ -94,17 +94,16 @@ export default function PlayerScreen() {
     return a.currentTime >= focusQ.audioStart && a.currentTime < focusQ.audioEnd
   }, [focusQ])
 
-  // play/pause this question's slice: pause always pauses, play always starts it
+  // the bar is one recording: play/pause only, seeking is the slider's job
   const togglePlay = useCallback(() => {
     const a = audioRef.current
-    if (!a || !focusQ || focusQ.audioStart == null) return
+    if (!a) return
     if (!a.paused) {
       a.pause()
       return
     }
-    if (!inFocusSeg()) seek(focusQ.audioStart)
     a.play().catch(() => {})
-  }, [focusQ, inFocusSeg, seek])
+  }, [])
 
   // jump to the current question's audio segment and play it
   const playQuestion = useCallback(() => {
@@ -260,9 +259,6 @@ export default function PlayerScreen() {
         <ControlBar
           focusN={focusN}
           total={total}
-          hasAudio={focusQ.audioStart != null}
-          segStart={focusQ.audioStart ?? 0}
-          segEnd={focusQ.audioEnd ?? 0}
           currentTime={currentTime}
           duration={duration}
           playing={playing}
@@ -270,7 +266,7 @@ export default function PlayerScreen() {
           onToggle={togglePlay}
           onPrev={() => goTo(focusN - 1)}
           onNext={() => goTo(focusN + 1)}
-          onSeekSeg={seek}
+          onSeek={seek}
           onRate={changeRate}
           onGrid={() => setGridOpen(true)}
           onSubmit={submit}
