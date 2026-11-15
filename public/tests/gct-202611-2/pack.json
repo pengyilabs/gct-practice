@@ -114,7 +114,11 @@
         "这个电脑是新买的吗？",
         "不是，已经买了三年多了。"
       ],
-      "answer": "B"
+      "answer": "B",
+      "transcriptEn": [
+        "Is this computer new?",
+        "No, I've had it for over three years."
+      ]
     },
     {
       "n": 2,
@@ -142,7 +146,11 @@
         "明天的课，你都准备好了没有？",
         "还没有呢，正在准备。"
       ],
-      "answer": "A"
+      "answer": "A",
+      "transcriptEn": [
+        "Are you all ready for tomorrow's class?",
+        "Not yet, I'm still getting ready."
+      ]
     },
     {
       "n": 3,
@@ -170,7 +178,11 @@
         "你怎么了，一个人坐着想什么呢？",
         "没关系，我在想公司的一些事情。"
       ],
-      "answer": "C"
+      "answer": "C",
+      "transcriptEn": [
+        "What's wrong? What are you thinking about, sitting here alone?",
+        "It's nothing. I'm just thinking about some things at the company."
+      ]
     },
     {
       "n": 4,
@@ -198,7 +210,11 @@
         "你好，我的车出问题了，你们能来帮我看一下吗？",
         "好的，请告诉我您在哪儿。"
       ],
-      "answer": "B"
+      "answer": "B",
+      "transcriptEn": [
+        "Hello, something's wrong with my car. Can you come and take a look?",
+        "Sure, please tell me where you are."
+      ]
     },
     {
       "n": 5,
@@ -226,7 +242,11 @@
         "你刚才说什么？我听不清楚。",
         "我让你快点过来。"
       ],
-      "answer": "C"
+      "answer": "C",
+      "transcriptEn": [
+        "What did you just say? I can't hear you clearly.",
+        "I'm telling you to come over here quickly."
+      ]
     },
     {
       "n": 6,
@@ -249,7 +269,11 @@
         "最近天气越来越冷，还总是下雨。",
         "这几天的天气不太好。"
       ],
-      "answer": "√"
+      "answer": "√",
+      "transcriptEn": [
+        "It's been getting colder and colder lately, and it keeps raining.",
+        "The weather these past few days hasn't been good."
+      ]
     },
     {
       "n": 7,
@@ -273,7 +297,12 @@
         "我一次买了两条。",
         "这条裤子现在便宜得多。"
       ],
-      "answer": "√"
+      "answer": "√",
+      "transcriptEn": [
+        "I remember these trousers were 800 yuan last month, and now they're only 400.",
+        "I bought two pairs at once.",
+        "These trousers are much cheaper now."
+      ]
     },
     {
       "n": 8,
@@ -297,7 +326,12 @@
         "什么时候去都能买到药，几点去都有人工作。",
         "那家药店晚上不能买药。"
       ],
-      "answer": "×"
+      "answer": "×",
+      "transcriptEn": [
+        "To make things easier for everyone, a new pharmacy has opened downstairs, and it never closes, 24 hours a day.",
+        "You can buy medicine whenever you go, and whatever the time, there's always someone working.",
+        "That pharmacy doesn't sell medicine at night."
+      ]
     },
     {
       "n": 9,
@@ -320,7 +354,11 @@
         "你在这儿等我一下，我上去拿了钱就下来。",
         "他已经到楼上了。"
       ],
-      "answer": "×"
+      "answer": "×",
+      "transcriptEn": [
+        "Wait for me here a moment. I'll go up, get the money and come straight back down.",
+        "He's already gone upstairs."
+      ]
     },
     {
       "n": 10,
@@ -345,7 +383,13 @@
         "谁有兴趣都可以参加。",
         "汉字比赛时写什么都可以。"
       ],
-      "answer": "×"
+      "answer": "×",
+      "transcriptEn": [
+        "The school is holding a Chinese character competition this semester.",
+        "In the competition you write characters according to the requirements, a hundred of them in total.",
+        "Anyone who's interested can take part.",
+        "In the character competition you can write whatever you like."
+      ]
     },
     {
       "n": 11,
@@ -374,7 +418,13 @@
         "我来中国已经一年多了。",
         "问：男的是什么时候开始学汉语的？"
       ],
-      "answer": "C"
+      "answer": "C",
+      "transcriptEn": [
+        "Your Chinese is really good. When did you start learning it?",
+        "I started two years ago.",
+        "I've been in China for more than a year now.",
+        "Question: When did the man start learning Chinese?"
+      ]
     },
     {
       "n": 12,
@@ -402,7 +452,12 @@
         "他开着车出去了，你下午再来吧。",
         "问：李先生在哪儿？"
       ],
-      "answer": "A"
+      "answer": "A",
+      "transcriptEn": [
+        "Excuse me, is Mr Li at the company?",
+        "He's driven out somewhere. Come back this afternoon.",
+        "Question: Where is Mr Li?"
+      ]
     },
     {
       "n": 13,
@@ -433,7 +488,15 @@
         "中国人跟你们不太一样，天气越热，我们越想喝点热的，比较舒服。",
         "问：天气热的时候，女的喝什么？"
       ],
-      "answer": "A"
+      "answer": "A",
+      "transcriptEn": [
+        "It's so hot. Let's have something to drink.",
+        "Here, have a soft drink.",
+        "Thanks, I brought some hot tea.",
+        "Hot tea in summer, won't that just make you hotter the more you drink?",
+        "Chinese people are a little different from you. The hotter the weather, the more we want something hot to drink, because it feels more comfortable.",
+        "Question: What does the woman drink when the weather is hot?"
+      ]
     },
     {
       "n": 14,
@@ -461,7 +524,12 @@
         "谢谢老师，我一定努力，下次考试还拿第一。",
         "问：关于女的，可以知道什么？"
       ],
-      "answer": "C"
+      "answer": "C",
+      "transcriptEn": [
+        "Xiaofang, I'm really happy for you. I hope you keep doing better and better.",
+        "Thank you, teacher. I'll definitely work hard and come first again in the next exam.",
+        "Question: What can we learn about the woman?"
+      ]
     },
     {
       "n": 15,
@@ -489,7 +557,12 @@
         "对，这个地方除了夏天太热以外，其他都很好，环境不错，买东西也方便。",
         "问：女的觉得这个地方怎么样？"
       ],
-      "answer": "B"
+      "answer": "B",
+      "transcriptEn": [
+        "You've lived in this place for twenty years, so you must know it well.",
+        "That's right. Apart from the summers being too hot, everything here is great. The surroundings are nice and shopping is convenient too.",
+        "Question: What does the woman think of this place?"
+      ]
     },
     {
       "n": 16,
@@ -518,7 +591,13 @@
         "你睡一会儿，或者再看几个电影。",
         "问：他们可能在哪儿？"
       ],
-      "answer": "A"
+      "answer": "A",
+      "transcriptEn": [
+        "Why haven't we arrived yet? I've already watched three or four films.",
+        "We're flying from China to the United States, so we still have another five or six hours in the air.",
+        "Sleep for a while, or watch a few more films.",
+        "Question: Where are they probably?"
+      ]
     },
     {
       "n": 17,
@@ -548,7 +627,14 @@
         "音乐会的票，我太喜欢了，谢谢你。",
         "问：女的对什么感兴趣？"
       ],
-      "answer": "C"
+      "answer": "C",
+      "transcriptEn": [
+        "Happy birthday. This is for you.",
+        "What is it?",
+        "Open it and see.",
+        "Concert tickets! I love them. Thank you so much.",
+        "Question: What is the woman interested in?"
+      ]
     },
     {
       "n": 18,
@@ -578,7 +664,14 @@
         "那你的车今天放在这儿吧，明天再过来开回去。",
         "问：关于男的，可以知道什么？"
       ],
-      "answer": "C"
+      "answer": "C",
+      "transcriptEn": [
+        "Waiter, a bottle of red wine, please.",
+        "Aren't you driving today? Are you allowed to drink?",
+        "It's your birthday today, so a few sips won't matter.",
+        "Then leave your car here today and come back for it tomorrow.",
+        "Question: What can we learn about the man?"
+      ]
     },
     {
       "n": 19,
@@ -608,7 +701,14 @@
         "一百多？自行车呀？",
         "问：关于男的，可以知道什么？"
       ],
-      "answer": "B"
+      "answer": "B",
+      "transcriptEn": [
+        "I got a new bike yesterday. It's much more comfortable than the old one.",
+        "Another one? You've already been through four or five of them, haven't you? How much was it?",
+        "Not expensive, just over a hundred. I'll give you my old one.",
+        "Over a hundred? So it's a bicycle?",
+        "Question: What can we learn about the man?"
+      ]
     },
     {
       "n": 20,
@@ -640,7 +740,16 @@
         "也好，我们上去喝点饮料。",
         "问：他们要做什么？"
       ],
-      "answer": "A"
+      "answer": "A",
+      "transcriptEn": [
+        "We've been walking for two or three hours, and we've bought so much stuff. I'm exhausted.",
+        "Let's rest for a while.",
+        "Then let's sit here for a bit and have some water.",
+        "There's a café upstairs. It's much quieter than here.",
+        "The atmosphere is nice too, and they play music.",
+        "All right, let's go up and get something to drink.",
+        "Question: What are they going to do?"
+      ]
     },
     {
       "n": 21,
@@ -662,7 +771,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "对方觉得衣服贵，最自然的回答是“没关系，喜欢就买吧”。"
+      "explanation": "对方觉得衣服贵，最自然的回答是“没关系，喜欢就买吧”。",
+      "explanationEn": "The other person finds the clothes expensive, so the most natural reply is \"It's fine, just buy it if you like it.\""
     },
     {
       "n": 22,
@@ -684,7 +794,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "问有没有见到马经理，回答“没有，不过我给他打了个电话”。"
+      "explanation": "问有没有见到马经理，回答“没有，不过我给他打了个电话”。",
+      "explanationEn": "The question asks whether the speaker saw Manager Ma, so the answer is \"No, but I gave him a call.\""
     },
     {
       "n": 23,
@@ -706,7 +817,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "问今天的报纸在哪儿，回答“在我这儿，我看完就给你”。"
+      "explanation": "问今天的报纸在哪儿，回答“在我这儿，我看完就给你”。",
+      "explanationEn": "The question asks where today's newspaper is, so the answer is \"I have it here; I'll give it to you when I've finished reading.\""
     },
     {
       "n": 24,
@@ -728,7 +840,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "问是南方人还是北方人，回答“我跟您一样，都是从南方来的”。"
+      "explanation": "问是南方人还是北方人，回答“我跟您一样，都是从南方来的”。",
+      "explanationEn": "The question asks whether he is from the south or the north, so the answer is \"Just like you, I'm from the south too.\""
     },
     {
       "n": 25,
@@ -750,7 +863,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "问这么晚了去哪儿，回答“有点儿饿，我去超市买点吃的”。"
+      "explanation": "问这么晚了去哪儿，回答“有点儿饿，我去超市买点吃的”。",
+      "explanationEn": "The question asks where she is going so late, so the answer is \"I'm a bit hungry, so I'm going to the supermarket to buy something to eat.\""
     },
     {
       "n": 26,
@@ -772,7 +886,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "问电影什么时候开始，回答“十分钟以后就开始了”。"
+      "explanation": "问电影什么时候开始，回答“十分钟以后就开始了”。",
+      "explanationEn": "The question asks when the film starts, so the answer is \"It starts in ten minutes.\""
     },
     {
       "n": 27,
@@ -794,7 +909,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "问怎么一直在睡觉，回答“我今天不舒服，觉得很累”。"
+      "explanation": "问怎么一直在睡觉，回答“我今天不舒服，觉得很累”。",
+      "explanationEn": "The question asks why he has been sleeping all this time, so the answer is \"I don't feel well today and I'm very tired.\""
     },
     {
       "n": 28,
@@ -816,7 +932,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "问是不是打算买房子，回答“是啊，看了很多，但都不太满意”。"
+      "explanation": "问是不是打算买房子，回答“是啊，看了很多，但都不太满意”。",
+      "explanationEn": "The question asks whether he is planning to buy a house, so the answer is \"Yes, I've looked at a lot of them, but I'm not happy with any of them.\""
     },
     {
       "n": 29,
@@ -838,7 +955,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "对方说鼻子上有东西，擦掉后问“现在呢？干净了吗？”"
+      "explanation": "对方说鼻子上有东西，擦掉后问“现在呢？干净了吗？”",
+      "explanationEn": "The other person says there is something on his nose, and after wiping it off he asks \"How about now? Is it clean?\""
     },
     {
       "n": 30,
@@ -860,7 +978,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "说今天的题不难，回答“因为你准备得好，所以觉得很容易”。"
+      "explanation": "说今天的题不难，回答“因为你准备得好，所以觉得很容易”。",
+      "explanationEn": "The speaker says today's questions are not hard at all, so the reply is \"You find it easy because you prepared well.\""
     },
     {
       "n": 31,
@@ -882,7 +1001,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "“送给她什么”中用“给”表示动作的对象，组成“送给”。"
+      "explanation": "“送给她什么”中用“给”表示动作的对象，组成“送给”。",
+      "explanationEn": "In \"to give her what\", the word for \"give\" marks the person who receives the action, forming \"give to\"."
     },
     {
       "n": 32,
@@ -904,7 +1024,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "衣服的量词用“件”，“那件衣服”。"
+      "explanation": "衣服的量词用“件”，“那件衣服”。",
+      "explanationEn": "The measure word for clothes is the one meaning \"item\", as in \"that piece of clothing\"."
     },
     {
       "n": 33,
@@ -926,7 +1047,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "明天不能来上课，说明明天“有事”。"
+      "explanation": "明天不能来上课，说明明天“有事”。",
+      "explanationEn": "Since he cannot come to class tomorrow, it means he has something else to do."
     },
     {
       "n": 34,
@@ -948,7 +1070,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "“非常”修饰“好”，表示程度很高。"
+      "explanation": "“非常”修饰“好”，表示程度很高。",
+      "explanationEn": "The adverb meaning \"extremely\" modifies \"good\" here and shows a very high degree."
     },
     {
       "n": 35,
@@ -970,7 +1093,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "爸爸现在不在家，“再”表示以后某个时间做某事。"
+      "explanation": "爸爸现在不在家，“再”表示以后某个时间做某事。",
+      "explanationEn": "Dad is not at home right now, so the word used means \"later on\" and refers to doing something at a future time."
     },
     {
       "n": 36,
@@ -992,7 +1116,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "“姓王”表示姓氏，是“姓”，不是“姓名”“名字”。"
+      "explanation": "“姓王”表示姓氏，是“姓”，不是“姓名”“名字”。",
+      "explanationEn": "\"I am surnamed Wang\" refers only to the surname, so the answer is \"surname\", not \"full name\" or \"given name\"."
     },
     {
       "n": 37,
@@ -1014,7 +1139,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "家里来的客人叫“客人”。"
+      "explanation": "家里来的客人叫“客人”。",
+      "explanationEn": "People who come to your home as visitors are called \"guests\"."
     },
     {
       "n": 38,
@@ -1036,7 +1162,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "天气不太好，推测“可能”要下雨。"
+      "explanation": "天气不太好，推测“可能”要下雨。",
+      "explanationEn": "The weather is not good, so the speaker guesses that it could possibly rain."
     },
     {
       "n": 39,
@@ -1058,7 +1185,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "一直很忙，所以没“时间”去旅游。"
+      "explanation": "一直很忙，所以没“时间”去旅游。",
+      "explanationEn": "He has been busy all these years, so he has no time to travel."
     },
     {
       "n": 40,
@@ -1080,7 +1208,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "没听懂，问老师的话是什么“意思”。"
+      "explanation": "没听懂，问老师的话是什么“意思”。",
+      "explanationEn": "Since she did not understand, she asks what the teacher's words meant."
     },
     {
       "n": 41,
@@ -1102,7 +1231,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "文中说“几乎没见她穿过裙子”，所以她很少穿裙子。"
+      "explanation": "文中说“几乎没见她穿过裙子”，所以她很少穿裙子。",
+      "explanationEn": "The passage says she has hardly ever been seen wearing a skirt, so she rarely wears one."
     },
     {
       "n": 42,
@@ -1124,7 +1254,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "妻子打来电话是“找我”，让我到了办公室给她回电话。"
+      "explanation": "妻子打来电话是“找我”，让我到了办公室给她回电话。",
+      "explanationEn": "The wife called because she was looking for him, asking him to call her back once he reached the office."
     },
     {
       "n": 43,
@@ -1146,7 +1277,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "因为“已经在办公室里坐了一天了”，所以更喜欢站着。"
+      "explanation": "因为“已经在办公室里坐了一天了”，所以更喜欢站着。",
+      "explanationEn": "Because he had been sitting in the office all day, he prefers to stand on the subway."
     },
     {
       "n": 44,
@@ -1168,7 +1300,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "“妻子一次也没去过”南方，所以她没去过南方。"
+      "explanation": "“妻子一次也没去过”南方，所以她没去过南方。",
+      "explanationEn": "The passage says his wife has never once been to the south, so she has never been there."
     },
     {
       "n": 45,
@@ -1190,7 +1323,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "文中说人们“离开时”说“再见”。"
+      "explanation": "文中说人们“离开时”说“再见”。",
+      "explanationEn": "The passage says people say \"goodbye\" when they are leaving."
     },
     {
       "n": 46,
@@ -1212,7 +1346,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "丈夫突然出国了，所以她请搬家公司帮忙。"
+      "explanation": "丈夫突然出国了，所以她请搬家公司帮忙。",
+      "explanationEn": "Her husband suddenly had to go abroad, so she asked a moving company to help."
     },
     {
       "n": 47,
@@ -1234,7 +1369,8 @@
         }
       ],
       "answer": "C",
-      "explanation": "旧房子都变成了高楼大厦，这个地方“变化真是太大”。"
+      "explanation": "旧房子都变成了高楼大厦，这个地方“变化真是太大”。",
+      "explanationEn": "The old houses have all turned into tall buildings, so this place has changed enormously."
     },
     {
       "n": 48,
@@ -1256,7 +1392,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "以前的手机“只能打电话”，功能很少。"
+      "explanation": "以前的手机“只能打电话”，功能很少。",
+      "explanationEn": "Phones in the past could only make calls and had very few functions."
     },
     {
       "n": 49,
@@ -1278,7 +1415,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "丈夫“每天忙得都没时间吃饭”，说明工作特别忙。"
+      "explanation": "丈夫“每天忙得都没时间吃饭”，说明工作特别忙。",
+      "explanationEn": "Her husband is so busy every day that he has no time to eat, which shows his work is extremely busy."
     },
     {
       "n": 50,
@@ -1300,7 +1438,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "医生让她“在家里休息几天”，说明她需要休息。"
+      "explanation": "医生让她“在家里休息几天”，说明她需要休息。",
+      "explanationEn": "The doctor told her to rest at home for a few days, which shows she needs rest."
     },
     {
       "n": 51,
@@ -1322,7 +1461,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "正确的语序是“我们坐电梯上去吧”。"
+      "explanation": "正确的语序是“我们坐电梯上去吧”。",
+      "explanationEn": "The correct word order is \"Let's take the lift up.\""
     },
     {
       "n": 52,
@@ -1344,7 +1484,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "正确的语序是“这儿的服务员都很热情”。"
+      "explanation": "正确的语序是“这儿的服务员都很热情”。",
+      "explanationEn": "The correct word order is \"The waiters here are all very friendly.\""
     },
     {
       "n": 53,
@@ -1366,7 +1507,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "正确的语序是“他的儿子一直在学校工作”。"
+      "explanation": "正确的语序是“他的儿子一直在学校工作”。",
+      "explanationEn": "The correct word order is \"His son has always worked at the school.\""
     },
     {
       "n": 54,
@@ -1388,7 +1530,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "“把”字句：请把牛奶放进冰箱。"
+      "explanation": "“把”字句：请把牛奶放进冰箱。",
+      "explanationEn": "This is a \"ba\" construction: \"Please put the milk into the fridge.\""
     },
     {
       "n": 55,
@@ -1410,7 +1553,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "“一杯咖啡也没喝”是“一……也……”结构，表示完全否定。"
+      "explanation": "“一杯咖啡也没喝”是“一……也……”结构，表示完全否定。",
+      "explanationEn": "The phrase \"not a single cup of coffee did I drink\" uses the \"not one ... either\" pattern to express complete negation."
     },
     {
       "n": 56,
@@ -1428,7 +1572,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "“一直”表示动作持续不变：一直（直）在房间里看书。"
+      "explanation": "“一直”表示动作持续不变：一直（直）在房间里看书。",
+      "explanationEn": "The sentence needs the word meaning \"continuously\", so the character for \"straight\" is correct rather than the one for \"true\"."
     },
     {
       "n": 57,
@@ -1446,7 +1591,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "“办公室”的“办”是“办”，不是“为”。"
+      "explanation": "“办公室”的“办”是“办”，不是“为”。",
+      "explanationEn": "The word for \"office\" uses the character meaning \"to handle\", not the one meaning \"for\"."
     },
     {
       "n": 58,
@@ -1464,7 +1610,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "椅子的量词是“把”：两（把）椅子。"
+      "explanation": "椅子的量词是“把”：两（把）椅子。",
+      "explanationEn": "Chairs are counted with the measure word meaning \"to hold\", not the sentence-final particle that sounds the same."
     },
     {
       "n": 59,
@@ -1482,7 +1629,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "“季节”的“季”，不是“李”。"
+      "explanation": "“季节”的“季”，不是“李”。",
+      "explanationEn": "The word for \"season\" uses the character meaning \"season\", not the one that appears in a common surname."
     },
     {
       "n": 60,
@@ -1500,7 +1648,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "“笔记本”的“本”，不是“木”。"
+      "explanation": "“笔记本”的“本”，不是“木”。",
+      "explanationEn": "\"Notebook computer\" uses the character meaning \"root\" or \"origin\", not the one meaning \"wood\"."
     },
     {
       "n": 61,
@@ -1518,7 +1667,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "“练习汉语口语”的“练”是“练”，不是“炼”。"
+      "explanation": "“练习汉语口语”的“练”是“练”，不是“炼”。",
+      "explanationEn": "In \"practise spoken Chinese\" the verb is the character meaning \"to practise\", not the one meaning \"to smelt\"."
     },
     {
       "n": 62,
@@ -1536,7 +1686,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "离开教室的时候要“关灯”。"
+      "explanation": "离开教室的时候要“关灯”。",
+      "explanationEn": "When you leave the classroom you should turn off the light, so the answer is the character meaning \"to close\"."
     },
     {
       "n": 63,
@@ -1554,7 +1705,8 @@
         }
       ],
       "answer": "A",
-      "explanation": "刚吃完饭不要马上“跑步”。"
+      "explanation": "刚吃完饭不要马上“跑步”。",
+      "explanationEn": "Right after a meal you had better not go running, so the answer is the character meaning \"to run\"."
     },
     {
       "n": 64,
@@ -1572,7 +1724,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "“你看”用来引起别人注意：你看，花都开了。"
+      "explanation": "“你看”用来引起别人注意：你看，花都开了。",
+      "explanationEn": "Here \"look\" is used to draw someone's attention: \"Look, the flowers have all bloomed.\""
     },
     {
       "n": 65,
@@ -1590,7 +1743,8 @@
         }
       ],
       "answer": "B",
-      "explanation": "“附近”的“近”，不是“进”。"
+      "explanation": "“附近”的“近”，不是“进”。",
+      "explanationEn": "The word for \"nearby\" uses the character meaning \"near\", not the one meaning \"to enter\"."
     }
   ]
 }
