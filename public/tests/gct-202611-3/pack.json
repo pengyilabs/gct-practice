@@ -108,8 +108,8 @@
           "text": ""
         }
       ],
-      "audioStart": 0.34,
-      "audioEnd": 16.34,
+      "audioStart": 0.0,
+      "audioEnd": 23.27,
       "transcript": [
         "我太饿了，我想吃块蛋糕。",
         "别吃了，我们去吃饭吧。"
@@ -140,8 +140,8 @@
           "text": ""
         }
       ],
-      "audioStart": 23.62,
-      "audioEnd": 38.92,
+      "audioStart": 23.27,
+      "audioEnd": 47.42,
       "transcript": [
         "我都看了二十分钟报纸了。",
         "车怎么还不来？",
@@ -174,8 +174,8 @@
           "text": ""
         }
       ],
-      "audioStart": 47.74,
-      "audioEnd": 65.62,
+      "audioStart": 47.42,
+      "audioEnd": 73.37,
       "transcript": [
         "右边看报纸的那个是你哥哥吗？",
         "对，他是我哥哥。"
@@ -206,8 +206,8 @@
           "text": ""
         }
       ],
-      "audioStart": 73.68,
-      "audioEnd": 88.1,
+      "audioStart": 73.37,
+      "audioEnd": 98.45,
       "transcript": [
         "这花茶在哪儿买的？真好喝。",
         "我也不知道，一个朋友送的。"
@@ -238,8 +238,8 @@
           "text": ""
         }
       ],
-      "audioStart": 98.8,
-      "audioEnd": 119.76,
+      "audioStart": 98.45,
+      "audioEnd": 128.04,
       "transcript": [
         "天气太冷了。",
         "回来时别坐公共汽车了。",
@@ -267,8 +267,8 @@
           "text": "错"
         }
       ],
-      "audioStart": 132.26,
-      "audioEnd": 161.84,
+      "audioStart": 128.04,
+      "audioEnd": 170.57,
       "transcript": [
         "小丽，我刚看见你给我打的电话。",
         "刚才我去楼下送客人了，没带手机。",
@@ -298,8 +298,8 @@
           "text": "错"
         }
       ],
-      "audioStart": 170.9,
-      "audioEnd": 204.32,
+      "audioStart": 170.57,
+      "audioEnd": 211.97,
       "transcript": [
         "今天早上，我妻子把车开出去了。",
         "要很晚才回来。",
@@ -331,8 +331,8 @@
           "text": "错"
         }
       ],
-      "audioStart": 212.28,
-      "audioEnd": 243.78,
+      "audioStart": 211.97,
+      "audioEnd": 252.02,
       "transcript": [
         "什么是快乐？",
         "结束一天的工作以后，你和家人一起吃晚饭，说说白天的事情，这不就是快乐吗？",
@@ -360,8 +360,8 @@
           "text": "错"
         }
       ],
-      "audioStart": 252.36,
-      "audioEnd": 286.54,
+      "audioStart": 252.02,
+      "audioEnd": 296.24,
       "transcript": [
         "每天晚上的这个时间，电视上除了新闻以外，没什么其他节目。",
         "所以弟弟只好上网看自己喜欢的电视节目。",
@@ -389,8 +389,8 @@
           "text": "错"
         }
       ],
-      "audioStart": 296.58,
-      "audioEnd": 315.84,
+      "audioStart": 296.24,
+      "audioEnd": 324.18,
       "transcript": [
         "我每天早上都去公园跑步、锻炼身体。",
         "他每天都运动。"
@@ -420,8 +420,8 @@
           "text": "想玩游戏"
         }
       ],
-      "audioStart": 328.1,
-      "audioEnd": 358.82,
+      "audioStart": 367.04,
+      "audioEnd": 406.64,
       "transcript": [
         "雨下得这么大，你家离这儿太远了，怎么办啊？",
         "没关系，我坐出租车半个小时就回去了。",
@@ -455,8 +455,8 @@
           "text": "今天的"
         }
       ],
-      "audioStart": 367.36,
-      "audioEnd": 398.3,
+      "audioStart": 324.18,
+      "audioEnd": 367.04,
       "transcript": [
         "今天的报纸，你看过了没有？",
         "没有。我在看昨天的报纸呢。",
@@ -488,8 +488,8 @@
           "text": "去超市"
         }
       ],
-      "audioStart": 406.62,
-      "audioEnd": 444.36,
+      "audioStart": 406.64,
+      "audioEnd": 453.08,
       "transcript": [
         "超市离家这么远，我们真的要走回去吗？",
         "只有三站，我们边走边聊，一会儿就到家了。",
@@ -523,8 +523,8 @@
           "text": "越来越没意思"
         }
       ],
-      "audioStart": 453.42,
-      "audioEnd": 485.46,
+      "audioStart": 453.08,
+      "audioEnd": 492.62,
       "transcript": [
         "我觉得汉语越来越难了。",
         "是吗？我怎么觉得越来越容易，也越来越有意思呀？",
@@ -556,8 +556,8 @@
           "text": "她不累"
         }
       ],
-      "audioStart": 492.96,
-      "audioEnd": 516.74,
+      "audioStart": 492.62,
+      "audioEnd": 524.55,
       "transcript": [
         "过来喝杯水，休息一下吧。",
         "我不累。",
@@ -589,8 +589,8 @@
           "text": "还没回家"
         }
       ],
-      "audioStart": 529.64,
-      "audioEnd": 561.98,
+      "audioStart": 524.55,
+      "audioEnd": 570.2,
       "transcript": [
         "你怎么还不吃饭？",
         "东东还没回来呢？",
@@ -626,8 +626,8 @@
           "text": "复习考试"
         }
       ],
-      "audioStart": 570.56,
-      "audioEnd": 602.18,
+      "audioStart": 570.2,
+      "audioEnd": 611.23,
       "transcript": [
         "妈，我跟同学去打篮球。",
         "你明天不是还要考试吗？",
@@ -661,8 +661,8 @@
           "text": "水果"
         }
       ],
-      "audioStart": 611.2,
-      "audioEnd": 641.42,
+      "audioStart": 611.23,
+      "audioEnd": 650.14,
       "transcript": [
         "给我来杯绿茶吧。",
         "这儿没有绿茶。",
@@ -698,8 +698,8 @@
           "text": "坐过站了"
         }
       ],
-      "audioStart": 650.48,
-      "audioEnd": 699.02,
+      "audioStart": 650.14,
+      "audioEnd": 707.56,
       "transcript": [
         "你今天回来得有点晚呀？",
         "今天不知道怎么了，特别累。",
@@ -737,8 +737,8 @@
           "text": "要吃米饭"
         }
       ],
-      "audioStart": 707.9,
-      "audioEnd": 759.12,
+      "audioStart": 707.56,
+      "audioEnd": 772.09,
       "transcript": [
         "你不是要买牛肉吗？",
         "怎么买鱼了？",
