@@ -7,5 +7,23 @@
     "questionCount": 65,
     "durationSec": 824,
     "path": "tests/gct-202611-1/pack.json"
+  },
+  {
+    "id": "gct-202611-2",
+    "title": "GCT-202611 · 练习二",
+    "level": "GCT",
+    "language": "zh",
+    "questionCount": 65,
+    "durationSec": 903,
+    "path": "tests/gct-202611-2/pack.json"
+  },
+  {
+    "id": "gct-202611-3",
+    "title": "GCT-202611 · 练习三",
+    "level": "GCT",
+    "language": "zh",
+    "questionCount": 65,
+    "durationSec": 773,
+    "path": "tests/gct-202611-3/pack.json"
   }
 ]

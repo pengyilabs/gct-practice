@@ -3,10 +3,10 @@ import { fmtTime } from '../lib/storage.js'
 
 const RATES = [0.75, 1, 1.25, 1.5]
 
-function SegmentScrub({ start, end, currentTime, onSeek }) {
+function TrackScrub({ currentTime, duration, onSeek }) {
   const trackRef = useRef(null)
-  const len = Math.max(0, end - start)
-  const cur = Math.min(Math.max(currentTime - start, 0), len)
+  const len = Math.max(0, duration)
+  const cur = Math.min(Math.max(currentTime, 0), len)
   const pct = len > 0 ? (cur / len) * 100 : 0
 
   const seekFromEvent = useCallback(
@@ -16,9 +16,9 @@ function SegmentScrub({ start, end, currentTime, onSeek }) {
       const rect = el.getBoundingClientRect()
       const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left
       const frac = Math.max(0, Math.min(1, x / rect.width))
-      onSeek(start + frac * len)
+      onSeek(frac * len)
     },
-    [len, start, onSeek]
+    [len, onSeek]
   )
 
   return (
@@ -26,7 +26,7 @@ function SegmentScrub({ start, end, currentTime, onSeek }) {
       ref={trackRef}
       className="scrub"
       role="slider"
-      aria-label="本题音频进度"
+      aria-label="全片音频进度"
       aria-valuemin={0}
       aria-valuemax={Math.round(len)}
       aria-valuenow={Math.round(cur)}
@@ -44,8 +44,8 @@ function SegmentScrub({ start, end, currentTime, onSeek }) {
       onTouchStart={seekFromEvent}
       onTouchMove={seekFromEvent}
       onKeyDown={(e) => {
-        if (e.key === 'ArrowLeft') onSeek(Math.max(start, start + cur - 5))
-        if (e.key === 'ArrowRight') onSeek(Math.min(end, start + cur + 5))
+        if (e.key === 'ArrowLeft') onSeek(Math.max(0, cur - 5))
+        if (e.key === 'ArrowRight') onSeek(Math.min(len, cur + 5))
       }}
     >
       <div className="scrub-track">
@@ -59,42 +59,27 @@ function SegmentScrub({ start, end, currentTime, onSeek }) {
 export default function ControlBar({
   focusN,
   total,
-  hasAudio,
-  segStart,
-  segEnd,
   currentTime,
+  duration,
   playing,
   rate,
   onToggle,
   onPrev,
   onNext,
-  onSeekSeg,
+  onSeek,
   onRate,
   onGrid,
   onSubmit,
 }) {
   const cycleRate = () => onRate(RATES[(RATES.indexOf(rate) + 1) % RATES.length])
-  const len = Math.max(0, segEnd - segStart)
-  const cur = hasAudio ? Math.min(Math.max(currentTime - segStart, 0), len) : 0
 
   return (
     <div className="ctrl-bar">
-      {hasAudio ? (
-        <div className="ctrl-scrub-row">
-          <span className="ctrl-time">{fmtTime(cur)}</span>
-          <SegmentScrub
-            start={segStart}
-            end={segEnd}
-            currentTime={currentTime}
-            onSeek={onSeekSeg}
-          />
-          <span className="ctrl-time">{fmtTime(len)}</span>
-        </div>
-      ) : (
-        <div className="ctrl-scrub-row">
-          <span className="ctrl-noaudio">本题无听力音频 · 可直接作答</span>
-        </div>
-      )}
+      <div className="ctrl-scrub-row">
+        <span className="ctrl-time">{fmtTime(currentTime)}</span>
+        <TrackScrub currentTime={currentTime} duration={duration} onSeek={onSeek} />
+        <span className="ctrl-time">{fmtTime(duration)}</span>
+      </div>
 
       <div className="ctrl-row">
         <button
@@ -117,8 +102,8 @@ export default function ControlBar({
           <button
             className="ctrl-play"
             onClick={onToggle}
-            disabled={!hasAudio}
-            aria-label={playing ? '暂停' : '播放本题音频'}
+            disabled={duration <= 0}
+            aria-label={playing ? '暂停' : '播放'}
           >
             {playing ? '❚❚' : '▶'}
           </button>

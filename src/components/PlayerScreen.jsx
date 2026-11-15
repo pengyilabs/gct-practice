@@ -16,6 +16,7 @@ export default function PlayerScreen() {
   const [gridOpen, setGridOpen] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
   const [rate, setRate] = useState(1)
   const [focusN, setFocusN] = useState(1)
   const [confirmExit, setConfirmExit] = useState(false)
@@ -44,6 +45,17 @@ export default function PlayerScreen() {
       alive = false
     }
   }, [id])
+
+  // ---- warm the image cache so picture questions switch instantly -------
+  useEffect(() => {
+    if (!pack) return
+    pack.questions.forEach((q) => {
+      if (q.type === 'picture' && q.image) {
+        const img = new Image()
+        img.src = `/tests/${pack.id}/${q.image}`
+      }
+    })
+  }, [pack])
 
   // ---- persistence -----------------------------------------------------
   const persist = useCallback(
@@ -82,17 +94,16 @@ export default function PlayerScreen() {
     return a.currentTime >= focusQ.audioStart && a.currentTime < focusQ.audioEnd
   }, [focusQ])
 
-  // play/pause the current question's "track"
+  // the bar is one recording: play/pause only, seeking is the slider's job
   const togglePlay = useCallback(() => {
     const a = audioRef.current
-    if (!a || !focusQ || focusQ.audioStart == null) return
+    if (!a) return
     if (!a.paused) {
       a.pause()
       return
     }
-    if (!inFocusSeg()) seek(focusQ.audioStart)
     a.play().catch(() => {})
-  }, [focusQ, inFocusSeg, seek])
+  }, [])
 
   // jump to the current question's audio segment and play it
   const playQuestion = useCallback(() => {
@@ -102,43 +113,19 @@ export default function PlayerScreen() {
     a.play().catch(() => {})
   }, [focusQ, inFocusSeg, seek])
 
-  // move between questions like tracks: keep playback going on the new track
+  // the recording is one continuous take: moving questions never touches playback
   const goTo = useCallback(
     (n) => {
       if (!pack) return
-      const clamped = Math.max(1, Math.min(n, pack.questions.length))
-      setFocusN(clamped)
-      const q = pack.questions.find((x) => x.n === clamped)
-      const a = audioRef.current
-      if (!a || !q) return
-      if (q.audioStart == null) {
-        a.pause()
-        return
-      }
-      const inSeg = a.currentTime >= q.audioStart && a.currentTime < q.audioEnd
-      if (!inSeg) seek(q.audioStart)
+      setFocusN(Math.max(1, Math.min(n, pack.questions.length)))
     },
-    [pack, seek]
+    [pack]
   )
 
   const changeRate = useCallback((r) => {
     setRate(r)
     if (audioRef.current) audioRef.current.playbackRate = r
   }, [])
-
-  // ---- auto-advance to the next track when this one ends ---------------
-  useEffect(() => {
-    if (!playing || !pack || !focusQ || focusQ.audioStart == null) return
-    if (currentTime < focusQ.audioEnd) return
-    const next = pack.questions.find((q) => q.n > focusQ.n && q.audioStart != null)
-    const a = audioRef.current
-    if (next) {
-      setFocusN(next.n)
-      if (a) a.currentTime = next.audioStart
-    } else if (a) {
-      a.pause()
-    }
-  }, [currentTime, playing, pack, focusQ])
 
   // ---- scoring ---------------------------------------------------------
   const submit = useCallback(() => {
@@ -189,50 +176,101 @@ export default function PlayerScreen() {
 
   return (
     <div className="screen player-screen">
-      <div className="q-focus">
-        {focusSection && (
-          <header className="article-head">
-            <div className="article-nav">
-              <button className="cancel-btn" onClick={() => setConfirmExit(true)}>
-                ✕ 退出练习
-              </button>
-              <span className="article-pack">{pack.title}</span>
-            </div>
-            <p className="article-kicker">{kicker}</p>
-            <h2 className="article-title">{headline}</h2>
-            {focusSection.instruction && (
-              <p className="article-lede">{focusSection.instruction}</p>
-            )}
-          </header>
-        )}
-        <QuestionCard
-          key={focusQ.n}
-          question={focusQ}
-          base={base}
-          selected={answers[focusQ.n]}
-          onSelect={(key) => selectAnswer(focusQ.n, key)}
-          onPlayAudio={playQuestion}
-        />
-        <p className="hint">随时可改答案，交卷后仍可回来修改并重新交卷。</p>
-      </div>
+      <aside className="q-side" aria-label="题目列表">
+        <div className="q-side-head">
+          <p className="q-side-pack">{pack.title}</p>
+          <p className="q-side-progress">
+            已答 {answeredCount} / {total}
+          </p>
+          <div className="q-side-bar">
+            <i style={{ width: `${(answeredCount / total) * 100}%` }} />
+          </div>
+        </div>
 
-      <ControlBar
-        focusN={focusN}
-        total={total}
-        hasAudio={focusQ.audioStart != null}
-        segStart={focusQ.audioStart ?? 0}
-        segEnd={focusQ.audioEnd ?? 0}
-        currentTime={currentTime}
-        playing={playing}
-        rate={rate}
-        onToggle={togglePlay}
-        onPrev={() => goTo(focusN - 1)}
-        onNext={() => goTo(focusN + 1)}
-        onSeekSeg={seek}
-        onRate={changeRate}
-        onGrid={() => setGridOpen(true)}
-        onSubmit={submit}
-      />
+        <nav className="q-side-list">
+          {pack.sections.map((sec) => {
+            const secQs = pack.questions.filter((q) => q.section === sec.id)
+            if (!secQs.length) return null
+            return (
+              <div className="q-side-group" key={sec.id}>
+                <p className="q-side-sec">
+                  {sec.part} · {sec.title}
+                </p>
+                <div className="q-side-chips">
+                  {secQs.map((q) => (
+                    <button
+                      key={q.n}
+                      className={`q-side-chip ${answers[q.n] != null ? 'is-done' : ''} ${
+                        q.n === focusN ? 'is-focus' : ''
+                      }`}
+                      onClick={() => goTo(q.n)}
+                      aria-current={q.n === focusN ? 'true' : undefined}
+                      aria-label={`第 ${q.n} 题${answers[q.n] != null ? '，已答' : ''}`}
+                    >
+                      {q.n}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </nav>
+
+        <div className="q-side-foot">
+          <button className="btn-primary q-side-submit" onClick={submit}>
+            交卷
+          </button>
+        </div>
+      </aside>
+
+      <div className="player-main">
+        <div className="q-focus">
+          {focusSection && (
+            <header className="article-head">
+              <div className="article-nav">
+                <button className="cancel-btn" onClick={() => setConfirmExit(true)}>
+                  ✕ 退出练习
+                </button>
+                <span className="article-pack">{pack.title}</span>
+              </div>
+              <h2 className="article-title">
+                <span className="article-kicker">{kicker}</span>
+                <span className="article-sep" aria-hidden="true">
+                  ·
+                </span>
+                {headline}
+              </h2>
+              {focusSection.instruction && (
+                <p className="article-lede">{focusSection.instruction}</p>
+              )}
+            </header>
+          )}
+          <QuestionCard
+            key={focusQ.n}
+            question={focusQ}
+            base={base}
+            selected={answers[focusQ.n]}
+            onSelect={(key) => selectAnswer(focusQ.n, key)}
+            onPlayAudio={playQuestion}
+          />
+        </div>
+
+        <ControlBar
+          focusN={focusN}
+          total={total}
+          currentTime={currentTime}
+          duration={duration}
+          playing={playing}
+          rate={rate}
+          onToggle={togglePlay}
+          onPrev={() => goTo(focusN - 1)}
+          onNext={() => goTo(focusN + 1)}
+          onSeek={seek}
+          onRate={changeRate}
+          onGrid={() => setGridOpen(true)}
+          onSubmit={submit}
+        />
+      </div>
 
       {confirmExit && (
         <div
@@ -310,6 +348,7 @@ export default function PlayerScreen() {
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
+        onLoadedMetadata={(e) => setDuration(e.currentTarget.duration || 0)}
         onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
       >
         <track kind="captions" />

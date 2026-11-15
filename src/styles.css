@@ -79,6 +79,84 @@ input {
   padding-bottom: 140px;
 }
 
+/* question index: only shown once the layout has a side rail */
+.q-side {
+  display: none;
+}
+
+.q-side-pack {
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.q-side-progress {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.q-side-bar {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.q-side-bar i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.q-side-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.q-side-sec {
+  margin: 0 0 8px;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.q-side-chips {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.q-side-chip {
+  height: 32px;
+  border-radius: 9px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.q-side-chip.is-done {
+  color: var(--text);
+  background: rgba(124, 108, 255, 0.16);
+  border-color: rgba(124, 108, 255, 0.38);
+}
+
+.q-side-chip.is-focus {
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(124, 108, 255, 0.22);
+}
+
+.q-side-submit {
+  width: 100%;
+}
+
 .screen-center {
   min-height: 60vh;
   display: flex;
@@ -310,7 +388,7 @@ input {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: clamp(20px, 3.5vw, 36px);
+  margin-bottom: 10px;
 }
 
 .cancel-btn {
@@ -332,26 +410,33 @@ input {
   white-space: nowrap;
 }
 
+/* section context stays on one line so the question keeps the room */
 .article-kicker {
   margin: 0;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   color: var(--accent-2);
 }
 
 .article-title {
-  margin: 8px 0 0;
-  font-size: clamp(26px, 3.6vw, 42px);
-  font-weight: 900;
-  line-height: 1.25;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.article-sep {
+  margin: 0 7px;
+  color: var(--muted);
+  font-weight: 500;
 }
 
 .article-lede {
-  margin: 12px 0 0;
+  margin: 3px 0 0;
   color: var(--muted);
-  font-size: clamp(15px, 1.5vw, 18px);
-  line-height: 1.75;
+  font-size: 12.5px;
+  line-height: 1.6;
 }
 
 /* ============ question focus (one at a time) ============ */
@@ -359,10 +444,13 @@ input {
   padding: 14px clamp(14px, 5vw, 80px) 8px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
 }
 
 .q-flat {
+  width: 100%;
+  max-width: 620px;
+  margin-inline: auto;
   padding-bottom: 4px;
 }
 
@@ -371,7 +459,7 @@ input {
   gap: 12px;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .q-label {
@@ -391,7 +479,7 @@ input {
   background: rgba(34, 211, 238, 0.12);
   border: 1px solid rgba(34, 211, 238, 0.35);
   border-radius: 999px;
-  padding: 8px 16px;
+  padding: 6px 14px;
 }
 
 .q-prompt {
@@ -417,7 +505,7 @@ input {
 .q-image {
   width: 100%;
   border-radius: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
   border: 1px solid var(--line);
   background: #fff;
 }
@@ -492,6 +580,57 @@ input {
   color: #fff;
 }
 
+/* ---- answer feedback (shown once the answer is revealed) ---- */
+.choice-correct {
+  border-color: var(--green);
+  background: rgba(52, 211, 153, 0.12);
+}
+
+.choice-wrong {
+  border-color: var(--red);
+  background: rgba(248, 113, 113, 0.12);
+}
+
+.choice-correct .choice-key {
+  background: var(--green);
+  color: #06251b;
+}
+
+.choice-wrong .choice-key {
+  background: var(--red);
+  color: #2a0b0b;
+}
+
+.choice-mark {
+  flex: 0 0 auto;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* centered variants keep the glyph centered: badge the mark in the corner */
+.choice-chip,
+.choice-tf,
+.choice-char {
+  position: relative;
+}
+
+.choice-chip .choice-mark,
+.choice-tf .choice-mark,
+.choice-char .choice-mark {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.choice-mark-ok {
+  color: var(--green);
+}
+
+.choice-mark-bad {
+  color: var(--red);
+}
+
 .choice-text {
   flex: 1;
 }
@@ -501,8 +640,13 @@ input {
   justify-content: center;
   font-size: 19px;
   font-weight: 900;
-  padding: 16px 0;
+  padding: 12px 0;
   letter-spacing: 0.1em;
+}
+
+/* A/B/C labels under each picture panel: keep them compact, char glyphs stay large */
+.choice-chip .char-glyph {
+  font-size: 22px;
 }
 
 /* true / false */
@@ -551,12 +695,6 @@ input {
 }
 
 /* ---- card footer ---- */
-.q-foot {
-  display: flex;
-  gap: 10px;
-  margin-top: 14px;
-}
-
 .btn-ghost {
   flex: 1;
   padding: 11px 0;
@@ -566,12 +704,6 @@ input {
   color: var(--muted);
   font-size: 13.5px;
   font-weight: 600;
-}
-
-.btn-ghost-on {
-  color: var(--accent-2);
-  border-color: rgba(34, 211, 238, 0.4);
-  background: rgba(34, 211, 238, 0.1);
 }
 
 .btn-primary {
@@ -637,64 +769,45 @@ input {
 
 /* ---- review block ---- */
 .review-block {
-  margin-top: 14px;
+  margin-top: 10px;
   border-top: 1px dashed var(--line);
-  padding-top: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  padding-top: 10px;
 }
 
-.review-row {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  font-size: 14.5px;
-}
-
-.review-label {
-  flex: 0 0 auto;
-  font-size: 11.5px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
-
-.review-value {
+.review-result {
+  margin: 0;
+  font-size: 13px;
   font-weight: 700;
 }
 
-.review-right {
+.review-result.is-right {
   color: var(--green);
 }
 
-.review-wrong {
+.review-result.is-wrong {
   color: var(--red);
 }
 
-.review-none {
+.review-caption {
+  margin: 8px 0 3px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
   color: var(--muted);
-  font-weight: 500;
 }
 
-.review-transcript {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 12px 14px;
-}
-
-.transcript-line {
-  margin: 6px 0 0;
+.review-text {
+  margin: 0;
   font-size: 13.5px;
-  line-height: 1.75;
+  line-height: 1.7;
   color: var(--text);
 }
 
-.review-explanation {
-  margin: 0;
-  font-size: 13.5px;
-  line-height: 1.75;
-  color: var(--muted);
+.review-text p {
+  margin: 0 0 2px;
+}
+
+.review-text p:last-child {
+  margin-bottom: 0;
 }
 
 /* ============ control bar ============ */
@@ -727,14 +840,6 @@ input {
   color: var(--muted);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-}
-
-.ctrl-noaudio {
-  flex: 1;
-  text-align: center;
-  font-size: 12px;
-  color: var(--muted);
-  padding: 10px 0;
 }
 
 .ctrl-row {
@@ -1065,6 +1170,11 @@ input {
 
 /* ============ large screens ============ */
 @media (min-width: 900px) {
+  /* reclaim vertical space so picture questions fit above the fixed bar */
+  .q-focus {
+    padding-top: 10px;
+  }
+
   .q-label {
     font-size: 13px;
   }
@@ -1090,5 +1200,61 @@ input {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px 32px;
+  }
+}
+
+/* ============ desktop: question index as a left rail ============ */
+@media (min-width: 1024px) {
+  .player-screen {
+    display: grid;
+    grid-template-columns: 264px minmax(0, 1fr);
+    align-items: start;
+    padding-bottom: 0;
+  }
+
+  .q-side {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 20px 14px 16px;
+    background: linear-gradient(180deg, #171c29 0%, var(--bg) 65%);
+    border-right: 1px solid var(--line);
+  }
+
+  .q-side-head {
+    padding: 0 6px 12px;
+  }
+
+  .q-side-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 6px 20px;
+    scrollbar-width: thin;
+    /* fade the last row so it reads as "more below" instead of clipped */
+    -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 26px), transparent);
+    mask-image: linear-gradient(180deg, #000 calc(100% - 26px), transparent);
+  }
+
+  .q-side-foot {
+    padding: 12px 6px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .player-main {
+    min-width: 0;
+    padding-bottom: 140px;
+  }
+
+  /* the rail only covers the test area, not the sidebar */
+  .ctrl-bar {
+    left: 264px;
+    width: auto;
+  }
+
+  /* the rail replaces the answer-sheet popup on wide screens */
+  .ctrl-grid {
+    display: none;
   }
 }

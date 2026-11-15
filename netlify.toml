@@ -6,3 +6,14 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Test assets live under stable filenames, so cache them aggressively
+[[headers]]
+  for = "/tests/*/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/tests/*/audio.mp3"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
