@@ -22,6 +22,7 @@ export default function PlayerScreen() {
   const [confirmExit, setConfirmExit] = useState(false)
 
   const audioRef = useRef(null)
+  const resumeAfterSeek = useRef(false)
 
   // ---- load pack + saved progress -------------------------------------
   useEffect(() => {
@@ -113,6 +114,25 @@ export default function PlayerScreen() {
     a.play().catch(() => {})
   }, [focusQ, inFocusSeg, seek])
 
+  // a jump this far has probably not been buffered yet, and mobile browsers keep
+  // playing the old buffer until the seek lands, which sounds like the previous
+  // question: stop first, and pick playback back up once the new spot is ready
+  const seekForQuestion = useCallback(
+    (t) => {
+      const a = audioRef.current
+      if (!a) return
+      const target = Math.max(0, Math.min(t, a.duration || t))
+      if (a.paused || Math.abs(a.currentTime - target) < 0.5) {
+        seek(target)
+        return
+      }
+      resumeAfterSeek.current = true
+      a.pause()
+      seek(target)
+    },
+    [seek]
+  )
+
   // moving to a question parks the recording at that question's start, so the
   // slider always shows where you are; reading questions leave it untouched
   const goTo = useCallback(
@@ -121,9 +141,9 @@ export default function PlayerScreen() {
       const next = Math.max(1, Math.min(n, pack.questions.length))
       setFocusN(next)
       const q = pack.questions.find((item) => item.n === next)
-      if (q && q.audioStart != null) seek(q.audioStart)
+      if (q && q.audioStart != null) seekForQuestion(q.audioStart)
     },
-    [pack, seek]
+    [pack, seekForQuestion]
   )
 
   const changeRate = useCallback((r) => {
@@ -354,6 +374,12 @@ export default function PlayerScreen() {
         onEnded={() => setPlaying(false)}
         onLoadedMetadata={(e) => setDuration(e.currentTarget.duration || 0)}
         onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
+        onSeeked={() => {
+          // the new question is buffered: carry on from there
+          if (!resumeAfterSeek.current) return
+          resumeAfterSeek.current = false
+          audioRef.current?.play().catch(() => {})
+        }}
       >
         <track kind="captions" />
       </audio>
