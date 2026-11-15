@@ -59,6 +59,7 @@ function TrackScrub({ currentTime, duration, onSeek }) {
 export default function ControlBar({
   focusN,
   total,
+  hasAudio,
   currentTime,
   duration,
   playing,
@@ -74,21 +75,29 @@ export default function ControlBar({
   const cycleRate = () => onRate(RATES[(RATES.indexOf(rate) + 1) % RATES.length])
 
   return (
-    <div className="ctrl-bar">
-      <div className="ctrl-scrub-row">
-        <span className="ctrl-time">{fmtTime(currentTime)}</span>
-        <TrackScrub currentTime={currentTime} duration={duration} onSeek={onSeek} />
-        <span className="ctrl-time">{fmtTime(duration)}</span>
-      </div>
+    <div className={`ctrl-bar ${hasAudio ? '' : 'ctrl-bar-quiet'}`}>
+      {hasAudio && (
+        <div className="ctrl-scrub-row">
+          <span className="ctrl-time">{fmtTime(currentTime)}</span>
+          <TrackScrub currentTime={currentTime} duration={duration} onSeek={onSeek} />
+          <span className="ctrl-time">{fmtTime(duration)}</span>
+        </div>
+      )}
 
       <div className="ctrl-row">
-        <button
-          className="ctrl-chip ctrl-rate"
-          onClick={cycleRate}
-          aria-label={`播放速度 ${rate} 倍，点击切换`}
-        >
-          {rate}×
-        </button>
+        {hasAudio ? (
+          <button
+            className="ctrl-chip ctrl-rate"
+            onClick={cycleRate}
+            aria-label={`播放速度 ${rate} 倍，点击切换`}
+          >
+            {rate}×
+          </button>
+        ) : (
+          // reading questions have no recording, so the transport collapses to
+          // plain navigation instead of offering controls that do nothing
+          <span className="ctrl-quiet-note">本题无音频</span>
+        )}
 
         <div className="ctrl-center">
           <button
@@ -99,14 +108,16 @@ export default function ControlBar({
           >
             ‹
           </button>
-          <button
-            className="ctrl-play"
-            onClick={onToggle}
-            disabled={duration <= 0}
-            aria-label={playing ? '暂停' : '播放'}
-          >
-            {playing ? '❚❚' : '▶'}
-          </button>
+          {hasAudio && (
+            <button
+              className="ctrl-play"
+              onClick={onToggle}
+              disabled={duration <= 0}
+              aria-label={playing ? '暂停' : '播放'}
+            >
+              {playing ? '❚❚' : '▶'}
+            </button>
+          )}
           {focusN >= total ? (
             <button className="ctrl-submit" onClick={onSubmit} aria-label="交卷查看成绩">
               交卷
