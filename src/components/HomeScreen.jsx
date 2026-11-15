@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { loadProgress, fmtTime } from '../lib/storage.js'
+import SettingsSheet from './SettingsSheet.jsx'
 
 export default function HomeScreen({ manifest, error }) {
   const [query, setQuery] = useState('')
   const [level, setLevel] = useState('全部')
+  const [settingsOpen, setSettingsOpen] = useState(false)
 
   const levels = useMemo(() => {
     if (!manifest) return ['全部']
@@ -29,6 +31,13 @@ export default function HomeScreen({ manifest, error }) {
   return (
     <div className="screen home-screen">
       <header className="home-hero">
+        <button
+          className="home-settings"
+          onClick={() => setSettingsOpen(true)}
+          aria-label="打开设置"
+        >
+          ⚙ 设置
+        </button>
         <div className="hero-badge">UESTC · GCT</div>
         <h1 className="hero-title">
           汉语听力<span className="hero-accent">阅读</span>练习
@@ -103,6 +112,8 @@ export default function HomeScreen({ manifest, error }) {
       <footer className="home-footer">
         作答记录与成绩保存在本机浏览器（localStorage）
       </footer>
+
+      {settingsOpen && <SettingsSheet onClose={() => setSettingsOpen(false)} />}
     </div>
   )
 }
