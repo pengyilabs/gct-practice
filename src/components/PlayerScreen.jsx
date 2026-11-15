@@ -253,7 +253,6 @@ export default function PlayerScreen() {
             onSelect={(key) => selectAnswer(focusQ.n, key)}
             onPlayAudio={playQuestion}
           />
-          <p className="hint">随时可改答案，交卷后仍可回来修改并重新交卷。</p>
         </div>
 
         <ControlBar
