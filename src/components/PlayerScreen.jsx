@@ -113,13 +113,17 @@ export default function PlayerScreen() {
     a.play().catch(() => {})
   }, [focusQ, inFocusSeg, seek])
 
-  // the recording is one continuous take: moving questions never touches playback
+  // moving to a question parks the recording at that question's start, so the
+  // slider always shows where you are; reading questions leave it untouched
   const goTo = useCallback(
     (n) => {
       if (!pack) return
-      setFocusN(Math.max(1, Math.min(n, pack.questions.length)))
+      const next = Math.max(1, Math.min(n, pack.questions.length))
+      setFocusN(next)
+      const q = pack.questions.find((item) => item.n === next)
+      if (q && q.audioStart != null) seek(q.audioStart)
     },
-    [pack]
+    [pack, seek]
   )
 
   const changeRate = useCallback((r) => {
