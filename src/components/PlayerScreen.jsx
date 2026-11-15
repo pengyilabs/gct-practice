@@ -134,14 +134,20 @@ export default function PlayerScreen() {
   )
 
   // moving to a question parks the recording at that question's start, so the
-  // slider always shows where you are; reading questions leave it untouched
+  // slider always shows where you are; reading questions have no audio, so
+  // leaving the listening part stops playback instead of talking over the text
   const goTo = useCallback(
     (n) => {
       if (!pack) return
       const next = Math.max(1, Math.min(n, pack.questions.length))
       setFocusN(next)
       const q = pack.questions.find((item) => item.n === next)
-      if (q && q.audioStart != null) seekForQuestion(q.audioStart)
+      if (q && q.audioStart != null) {
+        seekForQuestion(q.audioStart)
+        return
+      }
+      resumeAfterSeek.current = false
+      audioRef.current?.pause()
     },
     [pack, seekForQuestion]
   )
@@ -282,6 +288,7 @@ export default function PlayerScreen() {
         <ControlBar
           focusN={focusN}
           total={total}
+          hasAudio={focusQ.audioStart != null}
           currentTime={currentTime}
           duration={duration}
           playing={playing}
