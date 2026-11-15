@@ -11,15 +11,15 @@ export default function QuestionCard({
   onSelect,
   onPlayAudio,
 }) {
-  // answered questions reopen the answer panel so their marks stay visible
-  const [showAnswer, setShowAnswer] = useState(selected != null)
+  // answering is the only thing that opens the review: it stays for as long as
+  // the answer exists, so there is nothing to collapse
+  const revealed = selected != null
   const [revealTick, setRevealTick] = useState(0)
   const reviewRef = useRef(null)
   const isListening = q.audioStart != null
 
   const choose = (key) => {
     onSelect(key)
-    setShowAnswer(true)
     setRevealTick((t) => t + 1)
   }
 
@@ -49,21 +49,11 @@ export default function QuestionCard({
           base={base}
           selected={selected}
           onSelect={choose}
-          revealed={showAnswer}
+          revealed={revealed}
         />
       </div>
 
-      <footer className="q-foot">
-        <button
-          className={`btn-ghost ${showAnswer ? 'btn-ghost-on' : ''}`}
-          onClick={() => setShowAnswer((v) => !v)}
-          aria-expanded={showAnswer}
-        >
-          {showAnswer ? '收起答案' : '查看答案'}
-        </button>
-      </footer>
-
-      {showAnswer && (
+      {revealed && (
         <div ref={reviewRef}>
           <ReviewBlock question={q} selected={selected} />
         </div>

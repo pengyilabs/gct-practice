@@ -695,12 +695,6 @@ input {
 }
 
 /* ---- card footer ---- */
-.q-foot {
-  display: flex;
-  gap: 10px;
-  margin-top: 6px;
-}
-
 .btn-ghost {
   flex: 1;
   padding: 11px 0;
@@ -710,12 +704,6 @@ input {
   color: var(--muted);
   font-size: 13.5px;
   font-weight: 600;
-}
-
-.btn-ghost-on {
-  color: var(--accent-2);
-  border-color: rgba(34, 211, 238, 0.4);
-  background: rgba(34, 211, 238, 0.1);
 }
 
 .btn-primary {
@@ -781,104 +769,45 @@ input {
 
 /* ---- review block ---- */
 .review-block {
-  margin-top: 12px;
+  margin-top: 10px;
   border-top: 1px dashed var(--line);
-  padding-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  padding-top: 10px;
 }
 
-/* correct/your answer share one row so the panel opens short */
-.review-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.review-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12.5px;
-  color: var(--muted);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 4px 11px;
-  white-space: nowrap;
-}
-
-.review-tag b {
-  font-family: var(--font-display);
+.review-result {
+  margin: 0;
   font-size: 13px;
-  font-weight: 800;
-  color: var(--text);
+  font-weight: 700;
 }
 
-.review-tag-right {
+.review-result.is-right {
   color: var(--green);
-  background: rgba(52, 211, 153, 0.1);
-  border-color: rgba(52, 211, 153, 0.35);
 }
 
-.review-tag-wrong {
+.review-result.is-wrong {
   color: var(--red);
-  background: rgba(248, 113, 113, 0.1);
-  border-color: rgba(248, 113, 113, 0.35);
 }
 
-.review-tag-right b,
-.review-tag-wrong b {
-  color: inherit;
-}
-
-.review-label {
-  flex: 0 0 auto;
-  font-size: 11.5px;
+.review-caption {
+  margin: 8px 0 3px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
   color: var(--muted);
-  letter-spacing: 0.06em;
 }
 
-.review-transcript-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.review-toggle {
-  align-self: flex-start;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent-2);
-  background: rgba(34, 211, 238, 0.1);
-  border: 1px solid rgba(34, 211, 238, 0.3);
-  border-radius: 999px;
-  padding: 4px 12px;
-}
-
-.review-transcript {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 10px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.transcript-line {
+.review-text {
   margin: 0;
   font-size: 13.5px;
   line-height: 1.7;
   color: var(--text);
 }
 
-.review-explanation {
-  margin: 0;
-  font-size: 13.5px;
-  line-height: 1.75;
-  color: var(--muted);
+.review-text p {
+  margin: 0 0 2px;
+}
+
+.review-text p:last-child {
+  margin-bottom: 0;
 }
 
 /* ============ control bar ============ */
